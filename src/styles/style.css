@@ -1,0 +1,129 @@
+/**
+	* TODO: Mixins for all sort of media queries
+	* * Try browsing and adding some clever mixins for future use.
+*/
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: calc(0.5rem + 1em);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+body {
+  text-rendering: optimizeLegibility;
+  min-block-size: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.hsl > .box:nth-child(1) {
+  background-color: hsl(220deg, 55%, 15%);
+}
+
+.lch > .box:nth-child(1) {
+  background-color: lch(12% 20 281);
+}
+
+.scss > .box:nth-child(1) {
+  background-color: #203a6e;
+}
+
+.hsl > .box:nth-child(2) {
+  background-color: hsl(220deg, 55%, 25%);
+}
+
+.lch > .box:nth-child(2) {
+  background-color: lch(22% 20 281);
+}
+
+.scss > .box:nth-child(2) {
+  background-color: #2a4b8f;
+}
+
+.hsl > .box:nth-child(3) {
+  background-color: hsl(220deg, 55%, 45%);
+}
+
+.lch > .box:nth-child(3) {
+  background-color: lch(42% 20 281);
+}
+
+.scss > .box:nth-child(3) {
+  background-color: #335db1;
+}
+
+.hsl > .box:nth-child(4) {
+  background-color: hsl(220deg, 55%, 65%);
+}
+
+.lch > .box:nth-child(4) {
+  background-color: lch(62% 20 281);
+}
+
+.scss > .box:nth-child(4) {
+  background-color: #4672c9;
+}
+
+.hsl > .box:nth-child(5) {
+  background-color: hsl(220deg, 55%, 85%);
+}
+
+.lch > .box:nth-child(5) {
+  background-color: lch(82% 20 281);
+}
+
+.scss > .box:nth-child(5) {
+  background-color: #688cd3;
+}
+
+/**
+	* TODO: A neater design system generator
+	* TODO: typography system using clamp
+	* TODO: spacing system using clamp
+	* * Try making a dark theme generator. automatically :sparkle:
+*/
+.box-row {
+  display: flex;
+}
+.box-row + .box-row {
+  margin-block-start: 1rem;
+}
+
+.box-row {
+  position: relative;
+}
+.box-row::before {
+  letter-spacing: 1px;
+  content: "HSL";
+  display: block;
+  font-size: 2rem;
+  position: absolute;
+  left: -6rem;
+}
+
+.lch::before {
+  content: "LCH";
+}
+
+.scss::before {
+  content: "SASS";
+}
+
+.box {
+  height: 100px;
+  width: 100px;
+  background-color: antiquewhite;
+}

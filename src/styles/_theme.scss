@@ -1,0 +1,38 @@
+@use 'sass:list' as *;
+@use 'sass:color' as *;
+@use 'sass:math' as math;
+
+$hsl: (
+	hsl(220 55% 15%),
+	hsl(220 55% 25%),
+	hsl(220 55% 45%),
+	hsl(220 55% 65%),
+	hsl(220 55% 75%)
+);
+
+$lch: (
+	lch(12% 20 276),
+	lch(22% 20 276),
+	lch(42% 20 276),
+	lch(62% 20 276),
+	lch(82% 20 276)
+);
+
+$color-value: hsl(220 55% 15%);
+$color-value-1: lch(12% 24 282);
+
+@for $var from 1 to length($hsl) + 1 {
+	.hsl > .box:nth-child(#{$var}) {
+		background-color: nth($hsl, $var);
+	}
+	.lch > .box:nth-child(#{$var}) {
+		background-color: nth($lch, $var);
+	}
+	.scss > .box:nth-child(#{$var}) {
+		background-color: scale-color(
+			$color-value,
+			$lightness: math.min(20% * ($var - 1), 95%)
+		);
+		// @debug lightness($color-value-1);
+	}
+}

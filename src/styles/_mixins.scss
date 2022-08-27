@@ -1,0 +1,21 @@
+/**
+	* TODO: Mixins for all sort of media queries
+	* * Try browsing and adding some clever mixins for future use.
+*/
+
+@mixin prefers-motion() {
+	@media (prefers-reduced-motion: no-preference) {
+		@content;
+	}
+}
+
+@mixin flex($x: start, $y: start, $dir: row) {
+	display: flex;
+	justify-content: $x;
+	align-items: $y;
+	flex-direction: $dir;
+}
+
+%centered {
+	@include flex(center, center);
+}
