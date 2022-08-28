@@ -1,70 +1,80 @@
-@use 'sass:color' as *;
-@use 'sass:math' as math;
-@use './functions' as custom;
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:list';
+@use 'sass:color';
 
-$hsl: (
-	hsl(220 55% 15%),
-	hsl(220 55% 35%),
-	hsl(220 55% 55%),
-	hsl(220 55% 75%),
-	hsl(220 55% 95%)
-);
+$colors: ();
+$base: hsl(220 45% 55%);
 
-/*
-
-Experimental, scss doesn't recognize this as color
-$lch: (
-	lch(12% 20 276),
-	lch(22% 20 276),
-	lch(42% 20 276),
-	lch(62% 20 276),
-	lch(82% 20 276)
-);
-*/
-
-$color-value: hsl(220 55% 15%);
-
-@for $var from 1 through length($hsl) {
-	.hsl > .box:nth-child(#{$var}) {
-		background-color: nth($hsl, $var);
-	}
-	.scss > .box:nth-child(#{$var}) {
-		background-color: var(--shade-#{$var * 100});
+@mixin generate-shades($base, $step, $no) {
+	@for $var from (0 - $no) through $no {
+		$idx: $var + $no;
+		$shade: lightness($base);
+		$colors: map.set(
+			$colors,
+			'light',
+			'text',
+			#{$var * 100},
+			scale-color($base, $lightness: math.min($step * $idx, 95%))
+		) !global;
 	}
 }
 
-@mixin generate($base, $step, $no) {
-	$shade: lightness($base);
+@mixin generate-vars($base, $step, $no) {
+	@for $var from (0 - $no) through $no {
+		$idx: $var + $no;
+		$colors: map.set(
+			$colors,
+			'light',
+			'text',
+			#{$var * 100},
+			hsl(var(--h) var(--s) calc(var(--l) + ($step * $var)))
+		) !global;
+		$colors: map.set(
+			$colors,
+			'dark',
+			'text',
+			#{$var * 100},
+			hsl(var(--h) var(--s) calc(100% - (var(--l) + ($step * $var))))
+		) !global;
+	}
+}
 
-	@if $shade > 50% {
-		@for $var from 3 through 1 {
-			--shade--#{$var * 100}: #{scale-color(
-					$base,
-					$lightness: math.max(($step * ($var - 1)) * -1, 5%)
-				)};
+@include generate-vars($base, 20%, 2);
+
+// @debug $colors;
+
+@mixin color-scheme($type: light) {
+	@each $prop, $value in map-get($colors, $type) {
+		@each $shade, $val in $value {
+			--#{$prop}-#{$shade}: #{$val};
 		}
-	}
-
-	@for $var from 1 through $no {
-		--shade-#{$var*100}: #{scale-color(
-				$base,
-				$lightness: math.min($step * ($var - 1), 95%)
-			)};
-	}
-}
-
-.box {
-	@include generate($color-value, 25%, 5);
-}
-
-@media (prefers-color-scheme: dark) {
-	.box {
-		@include generate($color-value, -15%, 5);
 	}
 }
 
 :root {
-	--h: 220;
-	--s: 55%;
-	--l: 50%;
+	--h: #{color.hue($base)};
+	--s: #{color.saturation($base)};
+	--l: #{color.lightness($base)};
+
+	--base: (var(--h) var(--s) var(--l));
+	@include color-scheme();
 }
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--s: calc(#{color.saturation($base)} - 10%);
+		@include color-scheme(dark);
+	}
+}
+
+$idx: 0;
+
+@for $i from -2 through 2 {
+	$idx: $idx + 1 !global;
+	.scss > .box:nth-child(#{$idx}) {
+		background-color: var(--text-#{$i * 100});
+	}
+}
+
+// @debug list.length(map.get($colors, 'light', 'text'));
