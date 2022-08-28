@@ -6,7 +6,6 @@
 */
 
 @use './global' as *;
-@use './theme' as *;
 
 body {
 	@extend %centered;
@@ -44,5 +43,4 @@ body {
 .box {
 	height: 100px;
 	width: 100px;
-	background-color: antiquewhite;
 }

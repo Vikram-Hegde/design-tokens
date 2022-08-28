@@ -9,6 +9,80 @@ body {
   flex-direction: row;
 }
 
+/*
+
+Experimental, scss doesn't recognize this as color
+$lch: (
+	lch(12% 20 276),
+	lch(22% 20 276),
+	lch(42% 20 276),
+	lch(62% 20 276),
+	lch(82% 20 276)
+);
+*/
+.hsl > .box:nth-child(1) {
+  background-color: hsl(220deg, 55%, 15%);
+}
+
+.scss > .box:nth-child(1) {
+  background-color: var(--shade-100);
+}
+
+.hsl > .box:nth-child(2) {
+  background-color: hsl(220deg, 55%, 35%);
+}
+
+.scss > .box:nth-child(2) {
+  background-color: var(--shade-200);
+}
+
+.hsl > .box:nth-child(3) {
+  background-color: hsl(220deg, 55%, 55%);
+}
+
+.scss > .box:nth-child(3) {
+  background-color: var(--shade-300);
+}
+
+.hsl > .box:nth-child(4) {
+  background-color: hsl(220deg, 55%, 75%);
+}
+
+.scss > .box:nth-child(4) {
+  background-color: var(--shade-400);
+}
+
+.hsl > .box:nth-child(5) {
+  background-color: hsl(220deg, 55%, 95%);
+}
+
+.scss > .box:nth-child(5) {
+  background-color: var(--shade-500);
+}
+
+.box {
+  --shade-100: #111f3b;
+  --shade-200: #2a4b8f;
+  --shade-300: #577fce;
+  --shade-400: #abbfe7;
+  --shade-500: #eef2fa;
+}
+
+@media (prefers-color-scheme: dark) {
+  .box {
+    --shade-100: #111f3b;
+    --shade-200: #0f1b32;
+    --shade-300: #0c162a;
+    --shade-400: #091121;
+    --shade-500: #070c18;
+  }
+}
+:root {
+  --h: 220;
+  --s: 55%;
+  --l: 50%;
+}
+
 *,
 *::after,
 *::before {
@@ -27,66 +101,6 @@ body {
   text-rendering: optimizeLegibility;
   min-block-size: 100vh;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-}
-
-.hsl > .box:nth-child(1) {
-  background-color: hsl(220deg, 55%, 15%);
-}
-
-.lch > .box:nth-child(1) {
-  background-color: lch(12% 20 281);
-}
-
-.scss > .box:nth-child(1) {
-  background-color: #203a6e;
-}
-
-.hsl > .box:nth-child(2) {
-  background-color: hsl(220deg, 55%, 25%);
-}
-
-.lch > .box:nth-child(2) {
-  background-color: lch(22% 20 281);
-}
-
-.scss > .box:nth-child(2) {
-  background-color: #2a4b8f;
-}
-
-.hsl > .box:nth-child(3) {
-  background-color: hsl(220deg, 55%, 45%);
-}
-
-.lch > .box:nth-child(3) {
-  background-color: lch(42% 20 281);
-}
-
-.scss > .box:nth-child(3) {
-  background-color: #335db1;
-}
-
-.hsl > .box:nth-child(4) {
-  background-color: hsl(220deg, 55%, 65%);
-}
-
-.lch > .box:nth-child(4) {
-  background-color: lch(62% 20 281);
-}
-
-.scss > .box:nth-child(4) {
-  background-color: #4672c9;
-}
-
-.hsl > .box:nth-child(5) {
-  background-color: hsl(220deg, 55%, 85%);
-}
-
-.lch > .box:nth-child(5) {
-  background-color: lch(82% 20 281);
-}
-
-.scss > .box:nth-child(5) {
-  background-color: #688cd3;
 }
 
 /**
@@ -125,5 +139,4 @@ body {
 .box {
   height: 100px;
   width: 100px;
-  background-color: antiquewhite;
 }

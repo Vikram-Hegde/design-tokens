@@ -1,15 +1,18 @@
-@use 'sass:list' as *;
 @use 'sass:color' as *;
 @use 'sass:math' as math;
+@use './functions' as custom;
 
 $hsl: (
 	hsl(220 55% 15%),
-	hsl(220 55% 25%),
-	hsl(220 55% 45%),
-	hsl(220 55% 65%),
-	hsl(220 55% 75%)
+	hsl(220 55% 35%),
+	hsl(220 55% 55%),
+	hsl(220 55% 75%),
+	hsl(220 55% 95%)
 );
 
+/*
+
+Experimental, scss doesn't recognize this as color
 $lch: (
 	lch(12% 20 276),
 	lch(22% 20 276),
@@ -17,22 +20,51 @@ $lch: (
 	lch(62% 20 276),
 	lch(82% 20 276)
 );
+*/
 
 $color-value: hsl(220 55% 15%);
-$color-value-1: lch(12% 24 282);
 
-@for $var from 1 to length($hsl) + 1 {
+@for $var from 1 through length($hsl) {
 	.hsl > .box:nth-child(#{$var}) {
 		background-color: nth($hsl, $var);
 	}
-	.lch > .box:nth-child(#{$var}) {
-		background-color: nth($lch, $var);
-	}
 	.scss > .box:nth-child(#{$var}) {
-		background-color: scale-color(
-			$color-value,
-			$lightness: math.min(20% * ($var - 1), 95%)
-		);
-		// @debug lightness($color-value-1);
+		background-color: var(--shade-#{$var * 100});
 	}
+}
+
+@mixin generate($base, $step, $no) {
+	$shade: lightness($base);
+
+	@if $shade > 50% {
+		@for $var from 3 through 1 {
+			--shade--#{$var * 100}: #{scale-color(
+					$base,
+					$lightness: math.max(($step * ($var - 1)) * -1, 5%)
+				)};
+		}
+	}
+
+	@for $var from 1 through $no {
+		--shade-#{$var*100}: #{scale-color(
+				$base,
+				$lightness: math.min($step * ($var - 1), 95%)
+			)};
+	}
+}
+
+.box {
+	@include generate($color-value, 25%, 5);
+}
+
+@media (prefers-color-scheme: dark) {
+	.box {
+		@include generate($color-value, -15%, 5);
+	}
+}
+
+:root {
+	--h: 220;
+	--s: 55%;
+	--l: 50%;
 }

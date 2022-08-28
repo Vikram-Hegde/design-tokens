@@ -1,0 +1,8 @@
+@function lighten($var, $lighten) {
+	@return hsl(var(--h) var(--s) calc(var(--l) + #{$lighten}));
+}
+
+// returning a variable itself
+// @function darken($var, $darken) {
+// 	@return $var + ':' + #{(var(--h) var(--s) calc(var(--l) - #{$darken}))};
+// }
