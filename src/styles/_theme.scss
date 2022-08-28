@@ -6,41 +6,30 @@
 $colors: ();
 $base: hsl(220 45% 55%);
 
-@mixin generate-shades($base, $step, $no) {
+@mixin generate-vars($base, $step, $no, $name) {
 	@for $var from (0 - $no) through $no {
-		$idx: $var + $no;
-		$shade: lightness($base);
+		$idx: $var;
+		@if $idx >= 0 {
+			$idx: 1 + $idx;
+		}
 		$colors: map.set(
 			$colors,
 			'light',
-			'text',
-			#{$var * 100},
-			scale-color($base, $lightness: math.min($step * $idx, 95%))
-		) !global;
-	}
-}
-
-@mixin generate-vars($base, $step, $no) {
-	@for $var from (0 - $no) through $no {
-		$idx: $var + $no;
-		$colors: map.set(
-			$colors,
-			'light',
-			'text',
-			#{$var * 100},
-			hsl(var(--h) var(--s) calc(var(--l) + ($step * $var)))
+			$name,
+			#{$idx * 100},
+			hsl(var(--h) var(--s) min(var(--l) + ($step * $var), 95%))
 		) !global;
 		$colors: map.set(
 			$colors,
 			'dark',
-			'text',
-			#{$var * 100},
-			hsl(var(--h) var(--s) calc(100% - (var(--l) + ($step * $var))))
+			$name,
+			#{$idx * 100},
+			hsl(var(--h) var(--s) max(100% - (var(--l) + ($step * $var)), 5%))
 		) !global;
 	}
 }
 
-@include generate-vars($base, 20%, 2);
+@include generate-vars($base, 25%, 2, surface);
 
 // @debug $colors;
 
@@ -56,14 +45,12 @@ $base: hsl(220 45% 55%);
 	--h: #{color.hue($base)};
 	--s: #{color.saturation($base)};
 	--l: #{color.lightness($base)};
-
-	--base: (var(--h) var(--s) var(--l));
 	@include color-scheme();
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--s: calc(#{color.saturation($base)} - 10%);
+		--s: calc(#{color.saturation($base)} - 5%);
 		@include color-scheme(dark);
 	}
 }
@@ -71,9 +58,12 @@ $base: hsl(220 45% 55%);
 $idx: 0;
 
 @for $i from -2 through 2 {
+	@if $i >= 0 {
+		$i: $i + 1;
+	}
 	$idx: $idx + 1 !global;
 	.scss > .box:nth-child(#{$idx}) {
-		background-color: var(--text-#{$i * 100});
+		background-color: var(--surface-#{$i * 100});
 	}
 }
 
