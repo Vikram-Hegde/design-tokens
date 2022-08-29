@@ -26,8 +26,9 @@ $base: hsl(220 50% 50%);
 		$idx: $var;
 		$lightness: null;
 		$saturation: #{var(--s)};
+
 		@if $idx >= 0 {
-			$idx: 1 + $idx;
+			$idx: 1 + $idx; // for better naming
 		}
 
 		@if $theme == light {
@@ -52,23 +53,7 @@ $base: hsl(220 50% 50%);
 	}
 }
 
-@mixin color-scheme(
-	$type: 'light',
-	$auto: false,
-	$step: 15%,
-	$no: 2,
-	$name: null
-) {
-	// TESTS
-	@if $auto and $name == null {
-		@error 'Specify a name for your colors. eg: surface, text etc.';
-	}
-	// END
-
-	@if $auto {
-		@include generate($step, $no, $name, $type);
-	}
-
+@mixin color-scheme($type: 'light') {
 	@if $misc != null or $misc != () {
 		$colors: map.deep-merge($colors, $misc) !global;
 	}
@@ -90,14 +75,18 @@ $base: hsl(220 50% 50%);
 	--h: #{color.hue($base)};
 	--s: #{color.saturation($base)};
 	--l: #{color.lightness($base)};
-	@include color-scheme(light);
+	@include generate(15%, 3, surface);
+	@include generate(5%, 3, text, light);
+	@include color-scheme();
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
 		--s: calc(#{color.saturation($base)} - 10%);
-		@include color-scheme(dark, true, 15%, 3, surface);
-		@include color-scheme(dark, true, 5%, 2, text);
-		// @include color-scheme(dark, true, $name: text, $no: 2, $step: 5%);
+		@include generate(15%, 3, surface, dark);
+		@include generate(5%, 3, text, dark);
+		@include color-scheme(dark);
 	}
 }
+
+@debug $colors;
