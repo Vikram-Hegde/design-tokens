@@ -6,9 +6,11 @@
 */
 
 @use './global' as *;
+@use './mixins' as *;
 
 body {
 	@extend %centered;
+	background-color: var(--surface--300);
 }
 
 .box-row {
@@ -24,12 +26,35 @@ body {
 
 	&::before {
 		letter-spacing: 1px;
-		content: 'SLIDER';
 		display: block;
 		font-size: 2rem;
 		position: absolute;
 		left: -6rem;
 	}
+}
+
+.range {
+	--thumb-block: 30px;
+	--thumb-inline: 15px;
+	--track-block: 10px;
+	--track-inline: 100%;
+	--background: linear-gradient(
+		to right,
+		hsl(0, 80%, 70%) 0%,
+		hsl(30, 80%, 70%) 8.3%,
+		hsl(60, 80%, 70%) 16.6%,
+		hsl(90, 80%, 70%) 25%,
+		hsl(120, 80%, 70%) 33.3%,
+		hsl(150, 80%, 70%) 41.6%,
+		hsl(180, 80%, 70%) 50%,
+		hsl(210, 80%, 70%) 58.3%,
+		hsl(240, 80%, 70%) 66.6%,
+		hsl(270, 80%, 70%) 75%,
+		hsl(300, 80%, 70%) 83.3%,
+		hsl(330, 80%, 70%) 91.6%,
+		hsl(0, 80%, 70%) 100%
+	);
+	@extend %range;
 }
 
 .scss::before {
@@ -40,3 +65,24 @@ body {
 	height: 100px;
 	width: 100px;
 }
+
+// Presentation ONLY
+$idx: 0;
+
+.scss > .box {
+	transition: scale 0.15s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+@for $i from -2 through 2 {
+	@if $i >= 0 {
+		$i: $i + 1;
+	}
+	$idx: $idx + 1 !global;
+	.scss > .box:nth-child(#{$idx}) {
+		background-color: var(--surface-#{$i * 100});
+		&:hover {
+			scale: calc(1 + ($idx * 0.1));
+		}
+	}
+}
+// END

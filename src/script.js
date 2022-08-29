@@ -7,5 +7,5 @@ let range = document.querySelector('.range');
 let html = document.querySelector('html');
 
 range?.addEventListener('input', () => {
-	html?.style.setProperty('--h', `${range?.value}deg`);
+	html?.style.setProperty('--h', `${range?.value}`);
 });
