@@ -1,40 +1,62 @@
 @use 'sass:map';
-@use 'sass:math';
-@use 'sass:list';
 @use 'sass:color';
 
 $colors: ();
-$base: hsl(220 45% 55%);
 
-@mixin generate-vars($base, $step, $no, $name) {
+$misc: (
+	light: (
+		surface: (
+			900: hsl(var(--h) var(--l) 98%),
+		),
+	),
+	dark: (
+		surface: (
+			900: hsl(var(--h) var(--l) 2%),
+		),
+	),
+);
+
+/// Base value must be provided to generate the scheme.
+$base: hsl(220 50% 50%);
+
+/// A custom mixin to generate the shades from the provided base value.
+/// @require $base - Requires the base value to be defined
+/// @param {percentage} $step Provide a step value
+/// @param {number} $no Number of shades on either sides
+/// @param {string} $name Name of the nested map
+/// @param {string} $theme [light] Define theme
+/// @output Map
+
+@mixin generate($step, $no, $name, $theme: light) {
 	@for $var from (0 - $no) through $no {
 		$idx: $var;
+		$color: null;
 		@if $idx >= 0 {
 			$idx: 1 + $idx;
 		}
-		$colors: map.set(
-			$colors,
-			'light',
-			$name,
-			#{$idx * 100},
-			hsl(var(--h) var(--s) min(var(--l) + ($step * $var), 95%))
-		) !global;
-		$colors: map.set(
-			$colors,
-			'dark',
-			$name,
-			#{$idx * 100},
-			hsl(var(--h) var(--s) max(100% - (var(--l) + ($step * $var)), 5%))
-		) !global;
+		@if $theme == 'light' {
+			$color: hsl(var(--h) var(--s) min(var(--l) + ($step * $var), 95%));
+		} @else {
+			$color: hsl(
+				var(--h) var(--s) max(100% - (var(--l) + ($step * $var)), 5%)
+			);
+		}
+		$colors: map.set($colors, $theme, $name, #{$idx * 100}, $color) !global;
 	}
 }
 
-@include generate-vars($base, 25%, 2, surface);
-
-// @debug $colors;
-
-@mixin color-scheme($type: light) {
-	@each $prop, $value in map-get($colors, $type) {
+/// Color scheme generator
+/// @param {string} $type [light] Specify Theme
+/// @param {Boolean} $auto [true] If you want to use auto scheme generator
+/// @output - CSS Variables
+@mixin color-scheme($type: 'light', $auto: true) {
+	@if $auto {
+		@include generate(20%, 2, surface, $type);
+	}
+	@if type-of($misc == 'map') {
+		$colors: map.deep-merge($colors, $misc) !global;
+	}
+	@each $prop, $value in map.get($colors, $type) {
 		@each $shade, $val in $value {
 			--#{$prop}-#{$shade}: #{$val};
 		}
@@ -50,13 +72,18 @@ $base: hsl(220 45% 55%);
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--s: calc(#{color.saturation($base)} - 5%);
+		--s: calc(#{color.saturation($base)} - 10%);
 		@include color-scheme(dark);
 	}
 }
 
+@debug $colors;
+
 $idx: 0;
 
+.scss {
+	--h: 360;
+}
 @for $i from -2 through 2 {
 	@if $i >= 0 {
 		$i: $i + 1;
@@ -66,5 +93,3 @@ $idx: 0;
 		background-color: var(--surface-#{$i * 100});
 	}
 }
-
-// @debug list.length(map.get($colors, 'light', 'text'));
