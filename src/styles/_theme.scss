@@ -22,7 +22,7 @@ $misc: (
 $base: hsl(220 50% 50%);
 
 @mixin generate($step, $no, $name, $theme: light) {
-	@for $var from (0 - $no) through $no {
+	@for $var from (0 - $no) to $no {
 		$idx: $var;
 		$lightness: null;
 		$saturation: #{var(--s)};
@@ -53,7 +53,7 @@ $base: hsl(220 50% 50%);
 	}
 }
 
-@mixin color-scheme($type: 'light') {
+@mixin color-scheme($type: light) {
 	@if $misc != null or $misc != () {
 		$colors: map.deep-merge($colors, $misc) !global;
 	}

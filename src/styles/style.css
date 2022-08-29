@@ -62,7 +62,6 @@ body {
   --surface-100: hsl(var(--h), var(--s), min(var(--l) - 0%, 95%));
   --surface-200: hsl(var(--h), var(--s), min(var(--l) - 15%, 95%));
   --surface-300: hsl(var(--h), var(--s), min(var(--l) - 30%, 95%));
-  --surface-400: hsl(var(--h), var(--s), min(var(--l) - 45%, 95%));
   --surface-900: hsl(var(--h), var(--s), 95%);
   --text--300: hsl(var(--h), var(--s), 5%);
   --text--200: hsl(var(--h), var(--s), 10%);
@@ -70,7 +69,6 @@ body {
   --text-100: hsl(var(--h), var(--s), 25%);
   --text-200: hsl(var(--h), var(--s), 30%);
   --text-300: hsl(var(--h), var(--s), 35%);
-  --text-400: hsl(var(--h), var(--s), 35%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -83,14 +81,12 @@ body {
     --surface-100: hsl(var(--h), var(--s), max(100% - (var(--l) - 0%), 5%));
     --surface-200: hsl(var(--h), var(--s), max(100% - (var(--l) - 15%), 5%));
     --surface-300: hsl(var(--h), var(--s), max(100% - (var(--l) - 30%), 5%));
-    --surface-400: hsl(var(--h), var(--s), max(100% - (var(--l) - 45%), 5%));
     --text--300: hsl(var(--h), var(--s), 100%);
     --text--200: hsl(var(--h), var(--s), 100%);
     --text--100: hsl(var(--h), var(--s), 95%);
     --text-100: hsl(var(--h), var(--s), 90%);
     --text-200: hsl(var(--h), var(--s), 85%);
     --text-300: hsl(var(--h), var(--s), 80%);
-    --text-400: hsl(var(--h), var(--s), 75%);
   }
 }
 *,
