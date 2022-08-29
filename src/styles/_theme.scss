@@ -8,12 +8,12 @@ $colors: ();
 $misc: (
 	light: (
 		surface: (
-			900: hsl(var(--h) var(--l) 95%),
+			900: hsl(var(--h) var(--s) 95%),
 		),
 	),
 	dark: (
 		surface: (
-			900: hsl(var(--h) var(--l) 10%),
+			900: hsl(var(--h) var(--s) 10%),
 		),
 	),
 );
@@ -25,26 +25,29 @@ $base: hsl(220 50% 50%);
 	@for $var from (0 - $no) through $no {
 		$idx: $var;
 		$lightness: null;
+		$saturation: #{var(--s)};
 		@if $idx >= 0 {
 			$idx: 1 + $idx;
 		}
+
 		@if $theme == light {
-			$lightness: min(var(--l) + ($step * $var), 95%);
+			$lightness: min(var(--l) - ($step * $var), 95%);
 			@if $name == text {
-				$lightness: math.clamp(10%, ($step * $idx), 35%);
+				$lightness: math.clamp(5%, $step * ($no + 1) + ($idx * $step), 35%);
 			}
 		} @else if $theme == dark {
-			$lightness: max(100% - (var(--l) + ($step * $var)), 5%);
+			$lightness: max(100% - (var(--l) - ($step * $var)), 5%);
 			@if $name == text {
-				$lightness: math.clamp(50%, 95% + ($step * $var), 95%);
+				$lightness: math.clamp(50%, (95% - $step) - ($step * $var), 100%);
 			}
 		}
+
 		$colors: map.set(
 			$colors,
 			$theme,
 			$name,
 			#{$idx * 100},
-			hsl(var(--h) var(--s) #{$lightness})
+			hsl(var(--h) #{$saturation} #{$lightness})
 		) !global;
 	}
 }
@@ -87,14 +90,14 @@ $base: hsl(220 50% 50%);
 	--h: #{color.hue($base)};
 	--s: #{color.saturation($base)};
 	--l: #{color.lightness($base)};
-	@include color-scheme(light, true, $name: surface);
-	@include color-scheme(light, true, $name: text, $no: 1);
+	@include color-scheme(light);
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
 		--s: calc(#{color.saturation($base)} - 10%);
-		@include color-scheme(dark, true, $name: surface);
-		@include color-scheme(dark, true, $name: text, $no: 1);
+		@include color-scheme(dark, true, 15%, 3, surface);
+		@include color-scheme(dark, true, 5%, 2, text);
+		// @include color-scheme(dark, true, $name: text, $no: 2, $step: 5%);
 	}
 }

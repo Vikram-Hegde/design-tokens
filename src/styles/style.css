@@ -56,41 +56,33 @@ body {
   --h: 220deg;
   --s: 50%;
   --l: 50%;
-  --surface--200: hsl(var(--h), var(--s), min(var(--l) - 30%, 95%));
-  --surface--100: hsl(var(--h), var(--s), min(var(--l) - 15%, 95%));
-  --surface-100: hsl(var(--h), var(--s), min(var(--l) + 0%, 95%));
-  --surface-200: hsl(var(--h), var(--s), min(var(--l) + 15%, 95%));
-  --surface-300: hsl(var(--h), var(--s), min(var(--l) + 30%, 95%));
-  --surface-900: hsl(var(--h), var(--l), 95%);
-  --surface--200: hsl(var(--h), var(--s), min(var(--l) - 30%, 95%));
-  --surface--100: hsl(var(--h), var(--s), min(var(--l) - 15%, 95%));
-  --surface-100: hsl(var(--h), var(--s), min(var(--l) + 0%, 95%));
-  --surface-200: hsl(var(--h), var(--s), min(var(--l) + 15%, 95%));
-  --surface-300: hsl(var(--h), var(--s), min(var(--l) + 30%, 95%));
-  --surface-900: hsl(var(--h), var(--l), 95%);
-  --text--100: hsl(var(--h), var(--s), 10%);
-  --text-100: hsl(var(--h), var(--s), 15%);
-  --text-200: hsl(var(--h), var(--s), 30%);
+  --surface-900: hsl(var(--h), var(--s), 95%);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --s: calc(50% - 10%);
-    --surface-900: hsl(var(--h), var(--l), 10%);
-    --surface--200: hsl(var(--h), var(--s), max(100% - (var(--l) - 30%), 5%));
-    --surface--100: hsl(var(--h), var(--s), max(100% - (var(--l) - 15%), 5%));
-    --surface-100: hsl(var(--h), var(--s), max(100% - (var(--l) + 0%), 5%));
-    --surface-200: hsl(var(--h), var(--s), max(100% - (var(--l) + 15%), 5%));
-    --surface-300: hsl(var(--h), var(--s), max(100% - (var(--l) + 30%), 5%));
-    --surface-900: hsl(var(--h), var(--l), 10%);
-    --surface--200: hsl(var(--h), var(--s), max(100% - (var(--l) - 30%), 5%));
-    --surface--100: hsl(var(--h), var(--s), max(100% - (var(--l) - 15%), 5%));
-    --surface-100: hsl(var(--h), var(--s), max(100% - (var(--l) + 0%), 5%));
-    --surface-200: hsl(var(--h), var(--s), max(100% - (var(--l) + 15%), 5%));
-    --surface-300: hsl(var(--h), var(--s), max(100% - (var(--l) + 30%), 5%));
-    --text--100: hsl(var(--h), var(--s), 80%);
-    --text-100: hsl(var(--h), var(--s), 95%);
-    --text-200: hsl(var(--h), var(--s), 95%);
+    --surface-900: hsl(var(--h), var(--s), 10%);
+    --surface--300: hsl(var(--h), var(--s), max(100% - (var(--l) + 45%), 5%));
+    --surface--200: hsl(var(--h), var(--s), max(100% - (var(--l) + 30%), 5%));
+    --surface--100: hsl(var(--h), var(--s), max(100% - (var(--l) + 15%), 5%));
+    --surface-100: hsl(var(--h), var(--s), max(100% - (var(--l) - 0%), 5%));
+    --surface-200: hsl(var(--h), var(--s), max(100% - (var(--l) - 15%), 5%));
+    --surface-300: hsl(var(--h), var(--s), max(100% - (var(--l) - 30%), 5%));
+    --surface-400: hsl(var(--h), var(--s), max(100% - (var(--l) - 45%), 5%));
+    --surface-900: hsl(var(--h), var(--s), 10%);
+    --surface--300: hsl(var(--h), var(--s), max(100% - (var(--l) + 45%), 5%));
+    --surface--200: hsl(var(--h), var(--s), max(100% - (var(--l) + 30%), 5%));
+    --surface--100: hsl(var(--h), var(--s), max(100% - (var(--l) + 15%), 5%));
+    --surface-100: hsl(var(--h), var(--s), max(100% - (var(--l) - 0%), 5%));
+    --surface-200: hsl(var(--h), var(--s), max(100% - (var(--l) - 15%), 5%));
+    --surface-300: hsl(var(--h), var(--s), max(100% - (var(--l) - 30%), 5%));
+    --surface-400: hsl(var(--h), var(--s), max(100% - (var(--l) - 45%), 5%));
+    --text--200: hsl(var(--h), var(--s), 100%);
+    --text--100: hsl(var(--h), var(--s), 95%);
+    --text-100: hsl(var(--h), var(--s), 90%);
+    --text-200: hsl(var(--h), var(--s), 85%);
+    --text-300: hsl(var(--h), var(--s), 80%);
   }
 }
 *,
@@ -210,4 +202,29 @@ body {
 }
 .scss > .box:nth-child(5):hover {
   scale: 1.5;
+}
+
+.text-100 {
+  color: var(--text--200);
+}
+
+.text-200 {
+  color: var(--text--100);
+}
+
+.text-300 {
+  color: var(--text-100);
+}
+
+.text-400 {
+  color: var(--text-200);
+}
+
+.text-500 {
+  color: var(--text-300);
+}
+
+.box-row:has(.text-100) {
+  display: flex;
+  flex-direction: column;
 }

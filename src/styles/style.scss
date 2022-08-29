@@ -85,4 +85,20 @@ $idx: 0;
 		}
 	}
 }
+
+$idx1: 0;
+@for $i from -2 through 2 {
+	@if $i >= 0 {
+		$i: $i + 1;
+	}
+	$idx1: $idx1 + 1 !global;
+	.text-#{$idx1 * 100} {
+		color: var(--text-#{$i * 100});
+	}
+}
+
+.box-row:has(.text-100) {
+	display: flex;
+	flex-direction: column;
+}
 // END
