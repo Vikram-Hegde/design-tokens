@@ -1,8 +1,28 @@
-@function lighten($var, $lighten) {
-	@return hsl(var(--h) var(--s) calc(var(--l) + #{$lighten}));
+@use 'sass:list' as list;
+@use 'sass:math';
+@use 'sass:color';
+
+@function rounded($value, $precision: 1) {
+	$pow: math.pow(10, $precision);
+	@return calc(round($value * $pow) / $pow);
 }
 
-// returning a variable itself
-// @function darken($var, $darken) {
-// 	@return $var + ':' + #{(var(--h) var(--s) calc(var(--l) - #{$darken}))};
-// }
+@function lgbtq($step, $base) {
+	$inc: calc(100 / $step);
+	$percentage: ();
+	$color: ();
+	@for $var from 0 through $step {
+		$color: list.append(
+			$color,
+			color.adjust($base, $hue: $var * calc(360 / $step)),
+			comma
+		);
+		$percentage: list.append(
+			$percentage,
+			#{rounded($inc * $var, 2) + '%'},
+			comma
+		);
+	}
+	$list: list.zip($color, $percentage);
+	@return $list;
+}

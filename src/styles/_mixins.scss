@@ -3,6 +3,10 @@
 	* * Try browsing and adding some clever mixins for future use.
 */
 
+@use 'sass:list';
+@use 'sass:math';
+@use './functions' as func;
+
 @mixin prefers-motion() {
 	@media (prefers-reduced-motion: no-preference) {
 		@content;
@@ -62,10 +66,6 @@
 		background-color: #eee;
 		cursor: pointer;
 	}
-}
-
-@mixin color-wheel($step) {
-	$steps: 360 / $step;
 }
 
 %centered {

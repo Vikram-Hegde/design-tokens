@@ -4,7 +4,7 @@
 
 $colors: ();
 
-// any miscellaneous colors can be added here.
+/// any miscellaneous colors can be added here.
 $misc: (
 	light: (
 		surface: (
@@ -16,6 +16,7 @@ $misc: (
 			900: hsl(var(--h) var(--s) 10%),
 		),
 	),
+	surface-600: hsl(30 30% 20%),
 );
 
 /// Base value must be provided to generate the scheme.
@@ -48,7 +49,7 @@ $base: hsl(220 50% 50%);
 			$theme,
 			$name,
 			#{$idx * 100},
-			hsl(var(--h) #{$saturation} #{$lightness})
+			var(--h) #{$saturation} #{$lightness}
 		) !global;
 	}
 }
@@ -58,9 +59,12 @@ $base: hsl(220 50% 50%);
 		$colors: map.deep-merge($colors, $misc) !global;
 	}
 
+	// checks for values which is common for both dark and light.
 	@each $prop, $value in $colors {
-		@if type-of($value) != 'map' {
-			--#{$prop}: #{$value};
+		@if $type != dark {
+			@if type-of($value) != 'map' {
+				--#{$prop}: #{$value};
+			}
 		}
 	}
 
@@ -89,4 +93,4 @@ $base: hsl(220 50% 50%);
 	}
 }
 
-@debug $colors;
+// @debug $colors;
