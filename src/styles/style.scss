@@ -54,11 +54,6 @@ body {
 }
 
 // Presentation ONLY
-
-.scss {
-	--h: 100;
-}
-
 $idx: 0;
 
 .scss > .box {
@@ -95,5 +90,13 @@ $idx1: 0;
 .box-row:has(.text-100) {
 	display: flex;
 	flex-direction: column;
+	background-color: hsl(var(--surface--300));
+	padding: 1rem;
 }
+
+// very exciting that this works, proud moment.
+// .text-box {
+// 	--hue-add: 90;
+// }
+
 // END

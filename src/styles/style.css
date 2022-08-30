@@ -56,74 +56,76 @@ body {
   --h: 220deg;
   --s: 50%;
   --l: 50%;
+  --hue-add: 0;
 }
 
 @media (prefers-color-scheme: dark) {
   :root,
 [generated-colors=dark] {
     --s: calc(50% - 10%);
+    --hue-add: 0;
   }
 }
 [generated-colors=light] {
-  --surface--300: var(--h) var(--s) min(var(--l) + 45%, 95%);
-  --surface--200: var(--h) var(--s) min(var(--l) + 30%, 95%);
-  --surface--100: var(--h) var(--s) min(var(--l) + 15%, 95%);
-  --surface-100: var(--h) var(--s) min(var(--l) - 0%, 95%);
-  --surface-200: var(--h) var(--s) min(var(--l) - 15%, 95%);
-  --surface-300: var(--h) var(--s) min(var(--l) - 30%, 95%);
-  --text--300: var(--h) var(--s) 5%;
-  --text--200: var(--h) var(--s) 10%;
-  --text--100: var(--h) var(--s) 15%;
-  --text-100: var(--h) var(--s) 25%;
-  --text-200: var(--h) var(--s) 30%;
-  --text-300: var(--h) var(--s) 35%;
+  --surface--300: calc(var(--h) + var(--hue-add)) var(--s) min(var(--l) + 45%, 95%);
+  --surface--200: calc(var(--h) + var(--hue-add)) var(--s) min(var(--l) + 30%, 95%);
+  --surface--100: calc(var(--h) + var(--hue-add)) var(--s) min(var(--l) + 15%, 95%);
+  --surface-100: calc(var(--h) + var(--hue-add)) var(--s) min(var(--l) - 0%, 95%);
+  --surface-200: calc(var(--h) + var(--hue-add)) var(--s) min(var(--l) - 15%, 95%);
+  --surface-300: calc(var(--h) + var(--hue-add)) var(--s) min(var(--l) - 30%, 95%);
+  --text--300: calc(var(--h) + var(--hue-add)) var(--s) 5%;
+  --text--200: calc(var(--h) + var(--hue-add)) var(--s) 10%;
+  --text--100: calc(var(--h) + var(--hue-add)) var(--s) 15%;
+  --text-100: calc(var(--h) + var(--hue-add)) var(--s) 25%;
+  --text-200: calc(var(--h) + var(--hue-add)) var(--s) 30%;
+  --text-300: calc(var(--h) + var(--hue-add)) var(--s) 35%;
 }
 
 [generated-colors=dark] {
   --s: calc(50% - 10%);
-  --surface--300: var(--h) var(--s) max(100% - (var(--l) + 45%), 5%);
-  --surface--200: var(--h) var(--s) max(100% - (var(--l) + 30%), 5%);
-  --surface--100: var(--h) var(--s) max(100% - (var(--l) + 15%), 5%);
-  --surface-100: var(--h) var(--s) max(100% - (var(--l) - 0%), 5%);
-  --surface-200: var(--h) var(--s) max(100% - (var(--l) - 15%), 5%);
-  --surface-300: var(--h) var(--s) max(100% - (var(--l) - 30%), 5%);
-  --text--300: var(--h) var(--s) 95%;
-  --text--200: var(--h) var(--s) 90%;
-  --text--100: var(--h) var(--s) 85%;
-  --text-100: var(--h) var(--s) 80%;
-  --text-200: var(--h) var(--s) 75%;
-  --text-300: var(--h) var(--s) 70%;
+  --surface--300: calc(var(--h) + var(--hue-add)) var(--s) max(100% - (var(--l) + 45%), 5%);
+  --surface--200: calc(var(--h) + var(--hue-add)) var(--s) max(100% - (var(--l) + 30%), 5%);
+  --surface--100: calc(var(--h) + var(--hue-add)) var(--s) max(100% - (var(--l) + 15%), 5%);
+  --surface-100: calc(var(--h) + var(--hue-add)) var(--s) max(100% - (var(--l) - 0%), 5%);
+  --surface-200: calc(var(--h) + var(--hue-add)) var(--s) max(100% - (var(--l) - 15%), 5%);
+  --surface-300: calc(var(--h) + var(--hue-add)) var(--s) max(100% - (var(--l) - 30%), 5%);
+  --text--300: calc(var(--h) + var(--hue-add)) var(--s) 95%;
+  --text--200: calc(var(--h) + var(--hue-add)) var(--s) 90%;
+  --text--100: calc(var(--h) + var(--hue-add)) var(--s) 85%;
+  --text-100: calc(var(--h) + var(--hue-add)) var(--s) 80%;
+  --text-200: calc(var(--h) + var(--hue-add)) var(--s) 75%;
+  --text-300: calc(var(--h) + var(--hue-add)) var(--s) 70%;
 }
 
 :root {
-  --surface--300: var(--h) var(--s) min(var(--l) + 45%, 95%);
-  --surface--200: var(--h) var(--s) min(var(--l) + 30%, 95%);
-  --surface--100: var(--h) var(--s) min(var(--l) + 15%, 95%);
-  --surface-100: var(--h) var(--s) min(var(--l) - 0%, 95%);
-  --surface-200: var(--h) var(--s) min(var(--l) - 15%, 95%);
-  --surface-300: var(--h) var(--s) min(var(--l) - 30%, 95%);
-  --text--300: var(--h) var(--s) 5%;
-  --text--200: var(--h) var(--s) 10%;
-  --text--100: var(--h) var(--s) 15%;
-  --text-100: var(--h) var(--s) 25%;
-  --text-200: var(--h) var(--s) 30%;
-  --text-300: var(--h) var(--s) 35%;
+  --surface--300: calc(var(--h) + var(--hue-add)) var(--s) min(var(--l) + 45%, 95%);
+  --surface--200: calc(var(--h) + var(--hue-add)) var(--s) min(var(--l) + 30%, 95%);
+  --surface--100: calc(var(--h) + var(--hue-add)) var(--s) min(var(--l) + 15%, 95%);
+  --surface-100: calc(var(--h) + var(--hue-add)) var(--s) min(var(--l) - 0%, 95%);
+  --surface-200: calc(var(--h) + var(--hue-add)) var(--s) min(var(--l) - 15%, 95%);
+  --surface-300: calc(var(--h) + var(--hue-add)) var(--s) min(var(--l) - 30%, 95%);
+  --text--300: calc(var(--h) + var(--hue-add)) var(--s) 5%;
+  --text--200: calc(var(--h) + var(--hue-add)) var(--s) 10%;
+  --text--100: calc(var(--h) + var(--hue-add)) var(--s) 15%;
+  --text-100: calc(var(--h) + var(--hue-add)) var(--s) 25%;
+  --text-200: calc(var(--h) + var(--hue-add)) var(--s) 30%;
+  --text-300: calc(var(--h) + var(--hue-add)) var(--s) 35%;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --surface--300: var(--h) var(--s) max(100% - (var(--l) + 45%), 5%);
-    --surface--200: var(--h) var(--s) max(100% - (var(--l) + 30%), 5%);
-    --surface--100: var(--h) var(--s) max(100% - (var(--l) + 15%), 5%);
-    --surface-100: var(--h) var(--s) max(100% - (var(--l) - 0%), 5%);
-    --surface-200: var(--h) var(--s) max(100% - (var(--l) - 15%), 5%);
-    --surface-300: var(--h) var(--s) max(100% - (var(--l) - 30%), 5%);
-    --text--300: var(--h) var(--s) 95%;
-    --text--200: var(--h) var(--s) 90%;
-    --text--100: var(--h) var(--s) 85%;
-    --text-100: var(--h) var(--s) 80%;
-    --text-200: var(--h) var(--s) 75%;
-    --text-300: var(--h) var(--s) 70%;
+    --surface--300: calc(var(--h) + var(--hue-add)) var(--s) max(100% - (var(--l) + 45%), 5%);
+    --surface--200: calc(var(--h) + var(--hue-add)) var(--s) max(100% - (var(--l) + 30%), 5%);
+    --surface--100: calc(var(--h) + var(--hue-add)) var(--s) max(100% - (var(--l) + 15%), 5%);
+    --surface-100: calc(var(--h) + var(--hue-add)) var(--s) max(100% - (var(--l) - 0%), 5%);
+    --surface-200: calc(var(--h) + var(--hue-add)) var(--s) max(100% - (var(--l) - 15%), 5%);
+    --surface-300: calc(var(--h) + var(--hue-add)) var(--s) max(100% - (var(--l) - 30%), 5%);
+    --text--300: calc(var(--h) + var(--hue-add)) var(--s) 95%;
+    --text--200: calc(var(--h) + var(--hue-add)) var(--s) 90%;
+    --text--100: calc(var(--h) + var(--hue-add)) var(--s) 85%;
+    --text-100: calc(var(--h) + var(--hue-add)) var(--s) 80%;
+    --text-200: calc(var(--h) + var(--hue-add)) var(--s) 75%;
+    --text-300: calc(var(--h) + var(--hue-add)) var(--s) 70%;
   }
 }
 *,
@@ -190,10 +192,6 @@ body {
 .box {
   height: 100px;
   width: 100px;
-}
-
-.scss {
-  --h: 100;
 }
 
 .scss > .box {
@@ -269,4 +267,6 @@ body {
 .box-row:has(.text-100) {
   display: flex;
   flex-direction: column;
+  background-color: hsl(var(--surface--300));
+  padding: 1rem;
 }

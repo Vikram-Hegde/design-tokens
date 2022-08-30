@@ -24,7 +24,7 @@ $colors: ();
 			$theme,
 			$name,
 			#{$idx * 100},
-			var(--h) #{$saturation} #{$lightness}
+			#{calc(var(--h) + var(--hue-add)) #{$saturation} #{$lightness}}
 		) !global;
 	}
 }
@@ -61,6 +61,7 @@ $cascadingColors: map.get(config.$config, cascadingColors);
 		--h: #{color.hue(config.$base)};
 		--s: #{color.saturation(config.$base)};
 		--l: #{color.lightness(config.$base)};
+		--hue-add: 0;
 		@include generate($stepShades, $numberOfShades, surface);
 		@include generate($stepText, $numberOfShades, text);
 	}
@@ -73,6 +74,7 @@ $cascadingColors: map.get(config.$config, cascadingColors);
 		:root,
 		%dark {
 			--s: calc(#{color.saturation(config.$base)} - 10%);
+			--hue-add: 0;
 			@include generate($stepShades, $numberOfShades, surface, dark);
 			@include generate($stepText, $numberOfShades, text, dark);
 		}
