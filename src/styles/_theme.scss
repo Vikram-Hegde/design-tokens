@@ -1,48 +1,23 @@
 @use 'sass:map';
 @use 'sass:color';
 @use 'sass:math';
+@use './functions' as func;
+@use './config' as config;
 
 $colors: ();
 
-/// any miscellaneous colors can be added here.
-$misc: (
-	light: (
-		surface: (
-			900: hsl(var(--h) var(--s) 95%),
-		),
-	),
-	dark: (
-		surface: (
-			900: hsl(var(--h) var(--s) 10%),
-		),
-	),
-	surface-600: hsl(30 30% 20%),
-);
-
-/// Base value must be provided to generate the scheme.
-$base: hsl(220 50% 50%);
-
-@mixin generate($step, $no, $name, $theme: light) {
+@mixin generate($step, $no, $name: shade, $theme: light) {
 	@for $var from (0 - $no) to $no {
 		$idx: $var;
 		$lightness: null;
+		// extending the functionality purposes, keep it for later.
 		$saturation: #{var(--s)};
 
 		@if $idx >= 0 {
 			$idx: 1 + $idx; // for better naming
 		}
 
-		@if $theme == light {
-			$lightness: min(var(--l) - ($step * $var), 95%);
-			@if $name == text {
-				$lightness: math.clamp(5%, $step * ($no + 1) + ($idx * $step), 35%);
-			}
-		} @else if $theme == dark {
-			$lightness: max(100% - (var(--l) - ($step * $var)), 5%);
-			@if $name == text {
-				$lightness: math.clamp(50%, (95% - $step) - ($step * $var), 100%);
-			}
-		}
+		$lightness: func.lightness($theme, $name, $step, $var, $no, $idx);
 
 		$colors: map.set(
 			$colors,
@@ -55,8 +30,8 @@ $base: hsl(220 50% 50%);
 }
 
 @mixin color-scheme($type: light) {
-	@if $misc != null or $misc != () {
-		$colors: map.deep-merge($colors, $misc) !global;
+	@if config.$colors != null or config.$colors != () {
+		$colors: map.deep-merge($colors, config.$colors) !global;
 	}
 
 	// checks for values which is common for both dark and light.
@@ -75,22 +50,54 @@ $base: hsl(220 50% 50%);
 	}
 }
 
+$auto: map.get(config.$config, auto-generate);
+$stepShades: map.get(config.$config, stepShades);
+$stepText: map.get(config.$config, stepText);
+$numberOfShades: map.get(config.$config, numberOfShades);
+$cascadingColors: map.get(config.$config, cascadingColors);
+
+@if $auto {
+	%light {
+		--h: #{color.hue(config.$base)};
+		--s: #{color.saturation(config.$base)};
+		--l: #{color.lightness(config.$base)};
+		@include generate($stepShades, $numberOfShades, surface);
+		@include generate($stepText, $numberOfShades, text);
+	}
+
+	:root {
+		@extend %light;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:root,
+		%dark {
+			--s: calc(#{color.saturation(config.$base)} - 10%);
+			@include generate($stepShades, $numberOfShades, surface, dark);
+			@include generate($stepText, $numberOfShades, text, dark);
+		}
+	}
+}
+
+@if $cascadingColors {
+	[generated-colors='light'] {
+		@extend %light;
+		@include color-scheme();
+	}
+
+	[generated-colors='dark'] {
+		--s: calc(#{color.saturation(config.$base)} - 10%);
+		@extend %dark;
+		@include color-scheme(dark);
+	}
+}
+
 :root {
-	--h: #{color.hue($base)};
-	--s: #{color.saturation($base)};
-	--l: #{color.lightness($base)};
-	@include generate(15%, 3, surface);
-	@include generate(5%, 3, text, light);
 	@include color-scheme();
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--s: calc(#{color.saturation($base)} - 10%);
-		@include generate(15%, 3, surface, dark);
-		@include generate(5%, 3, text, dark);
 		@include color-scheme(dark);
 	}
 }
-
-// @debug $colors;

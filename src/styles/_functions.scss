@@ -26,3 +26,19 @@
 	$list: list.zip($color, $percentage);
 	@return $list;
 }
+
+@function lightness($theme, $name, $step, $var, $no, $idx) {
+	$lightness: null;
+
+	@if $theme == 'light' {
+		$lightness: min(var(--l) - ($step * $var), 95%);
+	} @else if $theme == 'dark' {
+		$lightness: max(100% - (var(--l) - ($step * $var)), 5%);
+	}
+	@if $theme == 'light' and $name == 'text' {
+		$lightness: math.clamp(5%, $step * ($no + 1) + ($idx * $step), 35%);
+	} @else if $theme == 'dark' and $name == 'text' {
+		$lightness: math.clamp(50%, (95% - ($step * $no)) - ($step * $var), 95%);
+	}
+	@return $lightness;
+}

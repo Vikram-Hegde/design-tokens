@@ -1,0 +1,15 @@
+// ALL the configuration can be done here.
+
+/// your custom colors
+$colors: ();
+// if only using custom colors don't forget to define your root with variables.
+
+/// config for auto generation.
+$base: hsl(220 50% 50%);
+$config: (
+	auto-generate: true,
+	stepShades: 15%,
+	stepText: 5%,
+	numberOfShades: 3,
+	cascadingColors: true,
+);
