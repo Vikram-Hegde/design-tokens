@@ -25,12 +25,10 @@
 %range {
 	background-color: transparent;
 	appearance: none;
+	block-size: 38px;
+	margin: 10px auto;
+	display: block;
 
-	& {
-		block-size: 38px;
-		margin: 10px 0;
-		inline-size: 100%;
-	}
 	&:focus {
 		outline: none;
 	}

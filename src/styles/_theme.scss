@@ -71,23 +71,23 @@ $cascadingColors: map.get(config.$config, cascadingColors);
 
 	@media (prefers-color-scheme: dark) {
 		%dark {
-			--s: calc(#{color.saturation(config.$base)} - 10%);
 			@include generate($stepShades, $numberOfSurfaceShades, surface, dark);
 			@include generate($stepText, $numberOfTextShades, text, dark);
 		}
 
 		:root {
+			--s: calc(#{color.saturation(config.$base)} - 10%);
 			@extend %dark;
 		}
 	}
 }
 
 @if $cascadingColors {
-	[generated-colors='light'] {
+	[generated-colors~='light'] {
 		@extend %light;
 		@include color-scheme();
 	}
-	[generated-colors='dark'] {
+	[generated-colors~='dark'] {
 		--s: calc(#{color.saturation(config.$base)} - 10%);
 		@extend %dark;
 		@include color-scheme(dark);

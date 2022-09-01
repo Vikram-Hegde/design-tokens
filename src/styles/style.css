@@ -59,11 +59,11 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-  [generated-colors=dark], :root {
+  :root {
     --s: calc(40% - 10%);
   }
 }
-[generated-colors=light] {
+[generated-colors~=light] {
   --surface--400: calc(var(--h) + var(--hue-add, 0)) var(--s) min(var(--l) + 60%, 95%);
   --surface--300: calc(var(--h) + var(--hue-add, 0)) var(--s) min(var(--l) + 45%, 95%);
   --surface--200: calc(var(--h) + var(--hue-add, 0)) var(--s) min(var(--l) + 30%, 95%);
@@ -78,7 +78,7 @@ body {
   --text-200: calc(var(--h) + var(--hue-add, 0)) var(--s) 25%;
 }
 
-[generated-colors=dark] {
+[generated-colors~=dark] {
   --s: calc(40% - 10%);
   --surface--400: calc(var(--h) + var(--hue-add, 0)) var(--s) max(100% - (var(--l) + 60%), 5%);
   --surface--300: calc(var(--h) + var(--hue-add, 0)) var(--s) max(100% - (var(--l) + 45%), 5%);
@@ -146,7 +146,7 @@ body {
 }
 
 body {
-  font-size: clamp(0.85rem, -1rem + 4.5vw, 1.25rem);
+  font-size: clamp(0.85rem, -1rem + 6vw, 1.35rem);
 }
 
 body {
@@ -263,4 +263,5 @@ body {
 
 .complimentary {
   --hue-add: 180;
+  background-color: hsl(var(--surface-300)) !important;
 }

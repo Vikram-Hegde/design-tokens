@@ -5,48 +5,58 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="./styles/style.scss" />
-		<script src="./script.js" type="module"></script>
+		<script src="./script.ts" type="module"></script>
 		<title>Design Tokens</title>
 	</head>
 	<body>
-		<!-- <h1 class="hello">hello darkness my friend.</h1> -->
-		<div class="boxes">
-			<div class="box-row">
-				<input class="range" type="range" min="0" max="360" value="220" />
-			</div>
-			<div class="box-row scss">
-				<div class="box"></div>
-				<div class="box"></div>
-				<div class="box"></div>
-				<div class="box"></div>
-				<div class="box"></div>
-			</div>
-			<div class="box-row scss complimentary" generated-colors="dark">
-				<div class="box"></div>
-				<div class="box"></div>
-				<div class="box"></div>
-				<div class="box"></div>
-				<div class="box"></div>
-			</div>
-			<script>
-				function getThemePreference() {
-					let theme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-					theme = theme ? 'light' : 'dark';
-					document
-						.querySelector('[generated-colors]')
-						.setAttribute('generated-colors', theme);
-				}
-				getThemePreference();
-				window
-					.matchMedia('(prefers-color-scheme: dark)')
-					.addEventListener('change', getThemePreference);
-			</script>
-			<div class="box-row text-box">
-				<h1 class="text-100">Some random text</h1>
-				<h2 class="text-200">Lorem ipsum dolor sit amet.</h2>
-				<h3 class="text-300">Lorem ipsum dolor sit.</h3>
-				<p class="text-400">Lorem ipsum dolor sit amet dolor</p>
-			</div>
+		<div class="input__range">
+			<input class="range" type="range" min="0" max="360" value="220" />
 		</div>
+		<section class="homepage">
+			<h1>Color experiments with Design Tokens</h1>
+			<p>
+				A little demo site showcasing the usecases for the colors section of
+				design tokens
+			</p>
+		</section>
+		<section class="color">
+			<h1>One color variable to rule them all</h1>
+			<p>
+				Define a base color in the configuration file and tokens will take care
+				of the rest of the colors. <em>Including dark theme</em>
+			</p>
+			<p class="small">
+				Main goal of this was to eliminate the repetition of making light and
+				dark theme colors for each and every project which can get time
+				consuming.
+			</p>
+		</section>
+		<section class="preference" generated-colors="dark">
+			<div class="tag">Stubborn</div>
+			<h1>I don't care about your color preference.</h1>
+			<p>
+				Some section need to stay in dark/light theme no matter user's
+				preference
+			</p>
+		</section>
+		<section class="preference" generated-colors="invert">
+			<div class="tag">Toddler</div>
+			<h1>I do the exact opposite of what you ask me to.</h1>
+			<p>
+				Well, its possible so just showcasing. Play with color preferences in
+				DevTools to see the effect
+			</p>
+		</section>
+		<section class="complimentary preference" generated-colors="invert">
+			<div class="tag">Confused</div>
+			<h1>
+				I do the exact opposite of what you ask me to, and a little confused
+				about it.
+			</h1>
+			<p>
+				Complimentary colors are a good way to showcase buttons and other
+				elements which live on the surface.
+			</p>
+		</section>
 	</body>
 </html>
