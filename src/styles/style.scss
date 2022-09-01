@@ -1,17 +1,11 @@
-/**
-	* TODO: A neater design system generator
-	* TODO: typography system using clamp
-	* TODO: spacing system using clamp
-	* * Try making a dark theme generator. automatically :sparkle:
-*/
-
 @use './reset' as *;
 @use './mixins' as *;
 @use './functions' as *;
+@use './base';
 
 body {
 	@extend %centered;
-	background-color: hsl(var(--surface--300));
+	background-color: hsl(var(--surface--400));
 }
 
 .box-row {
@@ -20,23 +14,6 @@ body {
 	& + & {
 		margin-block-start: 1rem;
 	}
-}
-
-.box-row {
-	position: relative;
-
-	&::before {
-		letter-spacing: 1px;
-		display: block;
-		font-size: 2rem;
-		position: absolute;
-		left: -6rem;
-	}
-}
-
-.scss::before {
-	color: hsl(var(--text-300));
-	content: 'SASS';
 }
 
 .range {
@@ -55,6 +32,10 @@ body {
 
 // Presentation ONLY
 $idx: 0;
+
+.scss {
+	flex-wrap: wrap;
+}
 
 .scss > .box {
 	transition: 0.15s cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -90,8 +71,15 @@ $idx1: 0;
 .box-row:has(.text-100) {
 	display: flex;
 	flex-direction: column;
-	background-color: hsl(var(--surface--300));
 	padding: 1rem;
+}
+
+.round {
+	block-size: 200px;
+	inline-size: 200px;
+	border-radius: 100px;
+	background-color: hsl(var(--surface--100));
+	color: var(--text-200);
 }
 
 // very exciting that this works, proud moment.

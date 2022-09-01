@@ -8,7 +8,7 @@
 		<script src="./script.js" type="module"></script>
 		<title>Design Tokens</title>
 	</head>
-	<body>
+	<body generated-colors="dark">
 		<!-- <h1 class="hello">hello darkness my friend.</h1> -->
 		<div class="boxes">
 			<div class="box-row">
@@ -21,7 +21,20 @@
 				<div class="box"></div>
 				<div class="box"></div>
 			</div>
-			<div class="box-row text-box" generated-colors="dark">
+			<!-- <script>
+				function getThemePreference() {
+					let theme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+					theme = theme ? 'light' : 'dark';
+					document
+						.querySelector('[generated-colors]')
+						.setAttribute('generated-colors', theme);
+				}
+				getThemePreference();
+				window
+					.matchMedia('(prefers-color-scheme: dark)')
+					.addEventListener('change', getThemePreference);
+			</script> -->
+			<div class="box-row text-box">
 				<h1 class="text-100">Some random text</h1>
 				<h2 class="text-200">Lorem ipsum dolor sit amet.</h2>
 				<h3 class="text-300">Lorem ipsum dolor sit.</h3>

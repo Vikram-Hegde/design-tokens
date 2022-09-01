@@ -24,7 +24,7 @@ $colors: ();
 			$theme,
 			$name,
 			#{$idx * 100},
-			#{calc(var(--h) + var(--hue-add)) #{$saturation} #{$lightness}}
+			#{calc(var(--h) + var(--hue-add, 0)) #{$saturation} #{$lightness}}
 		) !global;
 	}
 }
@@ -53,7 +53,8 @@ $colors: ();
 $auto: map.get(config.$config, auto-generate);
 $stepShades: map.get(config.$config, stepShades);
 $stepText: map.get(config.$config, stepText);
-$numberOfShades: map.get(config.$config, numberOfShades);
+$numberOfTextShades: map.get(config.$config, numberOfTextShades);
+$numberOfSurfaceShades: map.get(config.$config, numberOfSurfaceShades);
 $cascadingColors: map.get(config.$config, cascadingColors);
 
 @if $auto {
@@ -61,45 +62,44 @@ $cascadingColors: map.get(config.$config, cascadingColors);
 		--h: #{color.hue(config.$base)};
 		--s: #{color.saturation(config.$base)};
 		--l: #{color.lightness(config.$base)};
-		--hue-add: 0;
-		@include generate($stepShades, $numberOfShades, surface);
-		@include generate($stepText, $numberOfShades, text);
+		@include generate($stepShades, $numberOfSurfaceShades, surface);
+		@include generate($stepText, $numberOfTextShades, text);
 	}
-
 	:root {
 		@extend %light;
 	}
 
 	@media (prefers-color-scheme: dark) {
-		:root,
 		%dark {
 			--s: calc(#{color.saturation(config.$base)} - 10%);
-			--hue-add: 0;
-			@include generate($stepShades, $numberOfShades, surface, dark);
-			@include generate($stepText, $numberOfShades, text, dark);
+			@include generate($stepShades, $numberOfSurfaceShades, surface, dark);
+			@include generate($stepText, $numberOfTextShades, text, dark);
+		}
+
+		:root {
+			@extend %dark;
 		}
 	}
 }
+
+// :root {
+// 	@include color-scheme();
+// }
+
+// @media (prefers-color-scheme: dark) {
+// 	:root {
+// 		@include color-scheme(dark);
+// 	}
+// }
 
 @if $cascadingColors {
 	[generated-colors='light'] {
 		@extend %light;
 		@include color-scheme();
 	}
-
 	[generated-colors='dark'] {
 		--s: calc(#{color.saturation(config.$base)} - 10%);
 		@extend %dark;
-		@include color-scheme(dark);
-	}
-}
-
-:root {
-	@include color-scheme();
-}
-
-@media (prefers-color-scheme: dark) {
-	:root {
 		@include color-scheme(dark);
 	}
 }
