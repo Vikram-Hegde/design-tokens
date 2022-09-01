@@ -59,9 +59,6 @@ $cascadingColors: map.get(config.$config, cascadingColors);
 
 @if $auto {
 	%light {
-		--h: #{color.hue(config.$base)};
-		--s: #{color.saturation(config.$base)};
-		--l: #{color.lightness(config.$base)};
 		@include generate($stepShades, $numberOfSurfaceShades, surface);
 		@include generate($stepText, $numberOfTextShades, text);
 	}
@@ -82,16 +79,6 @@ $cascadingColors: map.get(config.$config, cascadingColors);
 	}
 }
 
-// :root {
-// 	@include color-scheme();
-// }
-
-// @media (prefers-color-scheme: dark) {
-// 	:root {
-// 		@include color-scheme(dark);
-// 	}
-// }
-
 @if $cascadingColors {
 	[generated-colors='light'] {
 		@extend %light;
@@ -100,6 +87,21 @@ $cascadingColors: map.get(config.$config, cascadingColors);
 	[generated-colors='dark'] {
 		--s: calc(#{color.saturation(config.$base)} - 10%);
 		@extend %dark;
+		@include color-scheme(dark);
+	}
+}
+
+:root {
+	@if $auto {
+		--h: #{color.hue(config.$base)};
+		--s: #{color.saturation(config.$base)};
+		--l: #{color.lightness(config.$base)};
+	}
+	@include color-scheme();
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
 		@include color-scheme(dark);
 	}
 }
