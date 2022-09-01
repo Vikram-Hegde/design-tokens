@@ -63,6 +63,9 @@ $cascadingColors: map.get(config.$config, cascadingColors);
 		@include generate($stepText, $numberOfTextShades, text);
 	}
 	:root {
+		--h: #{color.hue(config.$base)};
+		--s: #{color.saturation(config.$base)};
+		--l: #{color.lightness(config.$base)};
 		@extend %light;
 	}
 
@@ -92,11 +95,6 @@ $cascadingColors: map.get(config.$config, cascadingColors);
 }
 
 :root {
-	@if $auto {
-		--h: #{color.hue(config.$base)};
-		--s: #{color.saturation(config.$base)};
-		--l: #{color.lightness(config.$base)};
-	}
 	@include color-scheme();
 }
 
