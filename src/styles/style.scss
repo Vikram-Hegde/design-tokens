@@ -46,7 +46,7 @@ section {
 	gap: 1rem;
 	block-size: 100vh;
 
-	&:not:where(.preference, :nth-child(3)) {
+	&:not(.preference, :nth-child(3)) {
 		inline-size: var(--wrapper);
 		margin-inline: auto;
 	}

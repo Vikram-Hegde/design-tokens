@@ -1,5 +1,6 @@
 // base styles to make things consistent and usable across browsers.
 
 body {
-	font-size: clamp(0.85rem, -1rem + 6vw, 1.35rem);
+	font-size: clamp(0.85rem, -1rem + 6vw, 1.45rem);
+	overflow-x: hidden;
 }
