@@ -4,7 +4,11 @@
 @use './base';
 
 html {
-	scroll-snap-type: y mandatory;
+	--s-type: mandatory;
+	scroll-snap-type: y var(--s-type);
+	@include touch-device {
+		--s-type: proximity;
+	}
 }
 body {
 	--wrapper: min(100% - 2rem, 60ch);

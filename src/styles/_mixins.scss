@@ -71,3 +71,9 @@
 %centered {
 	@include flex(center, center);
 }
+
+@mixin touch-device {
+	@media (hover: none), (pointer: coarse) {
+		@content;
+	}
+}
