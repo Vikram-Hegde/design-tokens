@@ -24,8 +24,9 @@ body {
 
 	@include touch-device {
 		&::-webkit-scrollbar {
-			width: 0px;
+			width: 4px;
 		}
+		overflow-x: hidden;
 	}
 }
 
