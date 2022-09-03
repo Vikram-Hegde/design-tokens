@@ -3,13 +3,6 @@
 @use './functions' as *;
 @use './base';
 
-html {
-	--s-type: mandatory;
-	scroll-snap-type: y var(--s-type);
-	@include touch-device {
-		--s-type: proximity;
-	}
-}
 body {
 	--wrapper: min(100% - 2rem, 60ch);
 	background-color: hsl(var(--surface--400));
@@ -26,6 +19,12 @@ body {
 		&::-webkit-scrollbar-thumb {
 			background-color: hsl(var(--surface-100));
 			border-radius: 4px;
+		}
+	}
+
+	@include touch-device {
+		&::-webkit-scrollbar {
+			width: 0px;
 		}
 	}
 }
@@ -50,11 +49,10 @@ body {
 }
 
 section {
-	scroll-snap-align: start;
 	text-align: center;
 	@include flex(center, center, column);
 	gap: 1rem;
-	block-size: 100vh;
+	min-block-size: 100vh;
 
 	&:not(.preference, :nth-child(3)) {
 		inline-size: var(--wrapper);
@@ -75,6 +73,13 @@ section {
 	&:nth-child(3n) {
 		background-color: hsl(var(--surface--200));
 	}
+
+	img {
+		aspect-ratio: 16 / 9;
+		max-inline-size: 60ch;
+		mix-blend-mode: luminosity;
+		border-radius: 0.5rem;
+	}
 }
 
 h1 {
@@ -93,11 +98,12 @@ p {
 
 .homepage {
 	block-size: calc(100vh - 58px);
-	scroll-margin-block-start: 58px;
 }
 
 .color {
 	position: relative;
+	padding: 4rem 0;
+
 	.small {
 		position: absolute;
 		bottom: 1rem;
