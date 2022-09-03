@@ -31,7 +31,8 @@ body {
 }
 
 .input__range {
-	position: sticky;
+	position: fixed;
+	inline-size: 100%;
 	top: 0;
 	z-index: 2;
 	background-color: hsl(var(--surface--400) / 0.5);
