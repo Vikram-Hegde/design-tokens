@@ -103,3 +103,11 @@ $cascadingColors: map.get(config.$config, cascadingColors);
 		@include color-scheme(dark);
 	}
 }
+
+.complimentary {
+	--hue-add: 180;
+}
+
+.monochrome {
+	--s: 0%;
+}

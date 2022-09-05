@@ -56,12 +56,12 @@ section {
 	gap: 1rem;
 	min-block-size: 100vh;
 
-	&:not(.preference, :nth-child(3)) {
+	&:not(.preference, :nth-child(3n)) {
 		inline-size: var(--wrapper);
 		margin-inline: auto;
 	}
 
-	&:where(.preference, :nth-child(3)) > * {
+	&:where(.preference, :nth-child(3n)) > * {
 		inline-size: var(--wrapper);
 	}
 
@@ -84,6 +84,10 @@ section {
 	}
 }
 
+.homepage h1 {
+	margin-block-start: 58px;
+}
+
 h1 {
 	font-size: 2.25rem;
 	color: hsl(var(--text--100));
@@ -98,10 +102,6 @@ p {
 	}
 }
 
-.homepage {
-	block-size: calc(100vh - 58px);
-}
-
 .color {
 	position: relative;
 	padding: 4rem 0;
@@ -114,14 +114,6 @@ p {
 
 .preference {
 	background-color: hsl(var(--surface--400));
-}
-
-.complimentary {
-	--hue-add: 180;
-}
-
-.monochrome {
-	--s: 0%;
 }
 
 $idx: 0;
