@@ -72,7 +72,8 @@ section {
 		color: hsl(var(--text--200));
 	}
 
-	&:nth-child(3n) {
+	&:nth-child(3n),
+	&:nth-child(5) {
 		background-color: hsl(var(--surface--200));
 	}
 
