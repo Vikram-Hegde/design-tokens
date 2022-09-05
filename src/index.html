@@ -4,97 +4,126 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,500;1,400&display=swap"
+			rel="stylesheet"
+		/>
+
 		<link rel="stylesheet" href="./styles/style.scss" />
 		<script src="./script.ts" type="module"></script>
 		<title>Design Tokens</title>
 	</head>
 	<body>
-		<div class="input__range">
-			<input class="range" type="range" min="0" max="360" value="220" />
-		</div>
-		<section class="homepage">
-			<h1>Color experiments with Design Tokens</h1>
-			<p>
-				A little demo site showcasing the usecases for the colors section of
-				design tokens
-			</p>
-			<div class="palette">
-				<div class="box"></div>
-				<div class="box"></div>
-				<div class="box"></div>
-				<div class="box"></div>
-				<div class="box"></div>
+		<header>
+			<div class="input__range">
+				<label class="label-range" for="range">Hue Range</label>
+				<input
+					id="range"
+					class="range"
+					type="range"
+					min="0"
+					max="360"
+					value="220"
+					aria-label="Hue Range"
+				/>
 			</div>
-		</section>
-		<section class="color">
-			<h1>One color variable to rule them all</h1>
+		</header>
+		<main>
+			<section class="homepage">
+				<h1>Color experiments with Design Tokens</h1>
+				<p>
+					A little demo site showcasing the usecases for the colors section of
+					design tokens
+				</p>
+				<div class="palette">
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+				</div>
+			</section>
+			<section class="color">
+				<h1>One color variable to rule them all</h1>
+				<p>
+					Define a base color in the configuration file and tokens will take
+					care of the rest of the colors. <em>✨Including dark theme✨</em>
+				</p>
+				<p class="small">
+					Main goal of this was to eliminate the repetition of making light and
+					dark theme colors for each and every project which can get time
+					consuming.
+				</p>
+				<img src="../images/_config.scss.png" alt="code for config" />
+			</section>
+			<section class="preference" generated-colors="dark">
+				<div class="tag">Stubborn</div>
+				<h1>I don't care about your color preference.</h1>
+				<p>
+					Some sections need to stay in dark/light theme no matter user's
+					preference
+				</p>
+				<div class="palette">
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+				</div>
+			</section>
+			<section class="preference" generated-colors="invert">
+				<div class="tag">Toddler</div>
+				<h1>I do the exact opposite of what you ask me to.</h1>
+				<p>
+					Well, its possible so just showcasing. Play with color preferences in
+					DevTools to see the effect
+				</p>
+				<div class="palette">
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+				</div>
+			</section>
+			<section class="complimentary preference" generated-colors="invert">
+				<div class="tag">Complimentary</div>
+				<h1>I just need some compliments</h1>
+				<p>
+					Complimentary colors are a good way to showcase buttons and other
+					elements which live on the surface.
+				</p>
+				<div class="palette">
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+				</div>
+			</section>
+			<section class="monochrome preference" generated-colors="adapt">
+				<div class="tag">Monochrome</div>
+				<h1>I either stay black or white</h1>
+				<p>Plain and Simple. Very useful to keep designs minimal</p>
+				<div class="palette">
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+					<div class="box"></div>
+				</div>
+			</section>
+		</main>
+		<footer class="footer" generated-colors="adapt">
+			<h3>Powered By CSS Variables and Custom Attributes</h3>
 			<p>
-				Define a base color in the configuration file and tokens will take care
-				of the rest of the colors. <em>✨Including dark theme✨</em>
+				Made by
+				<a href="https://github.com/Vikram-Hegde" target="_blank"
+					>@VikramCodes</a
+				>
 			</p>
-			<p class="small">
-				Main goal of this was to eliminate the repetition of making light and
-				dark theme colors for each and every project which can get time
-				consuming.
-			</p>
-			<img src="../images/_config.scss.png" alt="code for config" />
-		</section>
-		<section class="preference" generated-colors="dark">
-			<div class="tag">Stubborn</div>
-			<h1>I don't care about your color preference.</h1>
-			<p>
-				Some sections need to stay in dark/light theme no matter user's
-				preference
-			</p>
-			<div class="palette">
-				<div class="box"></div>
-				<div class="box"></div>
-				<div class="box"></div>
-				<div class="box"></div>
-				<div class="box"></div>
-			</div>
-		</section>
-		<section class="preference" generated-colors="invert">
-			<div class="tag">Toddler</div>
-			<h1>I do the exact opposite of what you ask me to.</h1>
-			<p>
-				Well, its possible so just showcasing. Play with color preferences in
-				DevTools to see the effect
-			</p>
-			<div class="palette">
-				<div class="box"></div>
-				<div class="box"></div>
-				<div class="box"></div>
-				<div class="box"></div>
-				<div class="box"></div>
-			</div>
-		</section>
-		<section class="complimentary preference" generated-colors="invert">
-			<div class="tag">Complimentary</div>
-			<h1>I just need some compliments</h1>
-			<p>
-				Complimentary colors are a good way to showcase buttons and other
-				elements which live on the surface.
-			</p>
-			<div class="palette">
-				<div class="box"></div>
-				<div class="box"></div>
-				<div class="box"></div>
-				<div class="box"></div>
-				<div class="box"></div>
-			</div>
-		</section>
-		<section class="monochrome preference" generated-colors="adapt">
-			<div class="tag">Monochrome</div>
-			<h1>I either stay black or white</h1>
-			<p>Plain and Simple. Very useful to keep designs minimal</p>
-			<div class="palette">
-				<div class="box"></div>
-				<div class="box"></div>
-				<div class="box"></div>
-				<div class="box"></div>
-				<div class="box"></div>
-			</div>
-		</section>
+		</footer>
 	</body>
 </html>
