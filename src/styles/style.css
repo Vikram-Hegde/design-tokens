@@ -1,0 +1,312 @@
+/**
+	* TODO: Mixins for all sort of media queries
+	* * Try browsing and adding some clever mixins for future use.
+
+	* TODO: Rounded Mixin
+*/
+.range {
+  background-color: transparent;
+  appearance: none;
+  block-size: 38px;
+  margin: 10px auto;
+  display: block;
+}
+.range:focus {
+  outline: none;
+}
+.range::-webkit-slider-runnable-track {
+  inline-size: var(--track-inline);
+  block-size: var(--track-block);
+  background: var(--background);
+  cursor: pointer;
+  border-radius: 6px;
+}
+.range::-webkit-slider-thumb {
+  block-size: var(--thumb-block);
+  inline-size: var(--thumb-inline);
+  border-radius: 6px;
+  background-color: #eee;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-block-start: calc((var(--thumb-block) / 2 - 4px) * -1);
+  border: 1px solid #666;
+}
+.range::-moz-range-track {
+  inline-size: var(--track-inline);
+  block-size: var(--track-block);
+  cursor: pointer;
+  background: var(--background);
+  border-radius: 6px;
+}
+.range::-moz-range-thumb {
+  block-size: var(--thumb-block);
+  inline-size: var(--thumb-inline);
+  border-radius: 6px;
+  background-color: #eee;
+  cursor: pointer;
+}
+
+:root {
+  --h: 220deg;
+  --s: 55%;
+  --l: 50%;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --s: calc(55% - 10%);
+  }
+}
+[generated-colors~=light] {
+  --surface--400: calc(var(--h) + var(--hue-add, 0)) var(--s) min(var(--l) + 80%, 95%);
+  --surface--300: calc(var(--h) + var(--hue-add, 0)) var(--s) min(var(--l) + 60%, 95%);
+  --surface--200: calc(var(--h) + var(--hue-add, 0)) var(--s) min(var(--l) + 40%, 95%);
+  --surface--100: calc(var(--h) + var(--hue-add, 0)) var(--s) min(var(--l) + 20%, 95%);
+  --surface-100: calc(var(--h) + var(--hue-add, 0)) var(--s) min(var(--l) - 0%, 95%);
+  --surface-200: calc(var(--h) + var(--hue-add, 0)) var(--s) min(var(--l) - 20%, 95%);
+  --surface-300: calc(var(--h) + var(--hue-add, 0)) var(--s) min(var(--l) - 40%, 95%);
+  --surface-400: calc(var(--h) + var(--hue-add, 0)) var(--s) min(var(--l) - 60%, 95%);
+  --text--200: calc(var(--h) + var(--hue-add, 0)) var(--s) 5%;
+  --text--100: calc(var(--h) + var(--hue-add, 0)) var(--s) 10%;
+  --text-100: calc(var(--h) + var(--hue-add, 0)) var(--s) 20%;
+  --text-200: calc(var(--h) + var(--hue-add, 0)) var(--s) 25%;
+}
+
+[generated-colors~=dark] {
+  --s: calc(55% - 10%);
+  --surface--400: calc(var(--h) + var(--hue-add, 0)) var(--s) max(100% - (var(--l) + 80%), 5%);
+  --surface--300: calc(var(--h) + var(--hue-add, 0)) var(--s) max(100% - (var(--l) + 60%), 5%);
+  --surface--200: calc(var(--h) + var(--hue-add, 0)) var(--s) max(100% - (var(--l) + 40%), 5%);
+  --surface--100: calc(var(--h) + var(--hue-add, 0)) var(--s) max(100% - (var(--l) + 20%), 5%);
+  --surface-100: calc(var(--h) + var(--hue-add, 0)) var(--s) max(100% - (var(--l) - 0%), 5%);
+  --surface-200: calc(var(--h) + var(--hue-add, 0)) var(--s) max(100% - (var(--l) - 20%), 5%);
+  --surface-300: calc(var(--h) + var(--hue-add, 0)) var(--s) max(100% - (var(--l) - 40%), 5%);
+  --surface-400: calc(var(--h) + var(--hue-add, 0)) var(--s) max(100% - (var(--l) - 60%), 5%);
+  --text--200: calc(var(--h) + var(--hue-add, 0)) var(--s) 95%;
+  --text--100: calc(var(--h) + var(--hue-add, 0)) var(--s) 90%;
+  --text-100: calc(var(--h) + var(--hue-add, 0)) var(--s) 85%;
+  --text-200: calc(var(--h) + var(--hue-add, 0)) var(--s) 80%;
+}
+
+:root {
+  --surface--400: calc(var(--h) + var(--hue-add, 0)) var(--s) min(var(--l) + 80%, 95%);
+  --surface--300: calc(var(--h) + var(--hue-add, 0)) var(--s) min(var(--l) + 60%, 95%);
+  --surface--200: calc(var(--h) + var(--hue-add, 0)) var(--s) min(var(--l) + 40%, 95%);
+  --surface--100: calc(var(--h) + var(--hue-add, 0)) var(--s) min(var(--l) + 20%, 95%);
+  --surface-100: calc(var(--h) + var(--hue-add, 0)) var(--s) min(var(--l) - 0%, 95%);
+  --surface-200: calc(var(--h) + var(--hue-add, 0)) var(--s) min(var(--l) - 20%, 95%);
+  --surface-300: calc(var(--h) + var(--hue-add, 0)) var(--s) min(var(--l) - 40%, 95%);
+  --surface-400: calc(var(--h) + var(--hue-add, 0)) var(--s) min(var(--l) - 60%, 95%);
+  --text--200: calc(var(--h) + var(--hue-add, 0)) var(--s) 5%;
+  --text--100: calc(var(--h) + var(--hue-add, 0)) var(--s) 10%;
+  --text-100: calc(var(--h) + var(--hue-add, 0)) var(--s) 20%;
+  --text-200: calc(var(--h) + var(--hue-add, 0)) var(--s) 25%;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface--400: calc(var(--h) + var(--hue-add, 0)) var(--s) max(100% - (var(--l) + 80%), 5%);
+    --surface--300: calc(var(--h) + var(--hue-add, 0)) var(--s) max(100% - (var(--l) + 60%), 5%);
+    --surface--200: calc(var(--h) + var(--hue-add, 0)) var(--s) max(100% - (var(--l) + 40%), 5%);
+    --surface--100: calc(var(--h) + var(--hue-add, 0)) var(--s) max(100% - (var(--l) + 20%), 5%);
+    --surface-100: calc(var(--h) + var(--hue-add, 0)) var(--s) max(100% - (var(--l) - 0%), 5%);
+    --surface-200: calc(var(--h) + var(--hue-add, 0)) var(--s) max(100% - (var(--l) - 20%), 5%);
+    --surface-300: calc(var(--h) + var(--hue-add, 0)) var(--s) max(100% - (var(--l) - 40%), 5%);
+    --surface-400: calc(var(--h) + var(--hue-add, 0)) var(--s) max(100% - (var(--l) - 60%), 5%);
+    --text--200: calc(var(--h) + var(--hue-add, 0)) var(--s) 95%;
+    --text--100: calc(var(--h) + var(--hue-add, 0)) var(--s) 90%;
+    --text-100: calc(var(--h) + var(--hue-add, 0)) var(--s) 85%;
+    --text-200: calc(var(--h) + var(--hue-add, 0)) var(--s) 80%;
+  }
+}
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: calc(0.5rem + 1em);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+body {
+  text-rendering: optimizeLegibility;
+  min-block-size: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  font-size: clamp(0.85rem, -1rem + 6vw, 1.45rem);
+}
+
+body {
+  --wrapper: min(100% - 2rem, 60ch);
+  background-color: hsl(var(--surface--400));
+}
+@media (hover: hover), (pointer: fine) {
+  body::-webkit-scrollbar {
+    width: 8px;
+  }
+  body::-webkit-scrollbar-track {
+    background-color: hsl(var(--surface--300));
+  }
+  body::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--surface-100));
+    border-radius: 4px;
+  }
+}
+@media (hover: none), (pointer: coarse) {
+  body {
+    overflow-x: hidden;
+  }
+  body::-webkit-scrollbar {
+    width: 4px;
+  }
+}
+
+.input__range {
+  position: fixed;
+  inline-size: 100%;
+  top: 0;
+  z-index: 2;
+  background-color: hsl(var(--surface--400)/0.5);
+  backdrop-filter: blur(8px);
+  padding-block: 0.5rem;
+}
+
+.range {
+  --thumb-block: 30px;
+  --thumb-inline: 15px;
+  --track-block: 10px;
+  --track-inline: var(--wrapper);
+  --background: linear-gradient(to right, #f07575 0%, #f0b375 8.33%, #f0f075 16.67%, #b3f075 25%, #75f075 33.33%, #75f0b3 41.67%, #75f0f0 50%, #75b3f0 58.33%, #7575f0 66.67%, #b375f0 75%, #f075f0 83.33%, #f075b3 91.67%, #f07575 100%);
+  inline-size: var(--track-inline);
+}
+
+section {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+  min-block-size: 100vh;
+}
+section:not(.preference, :nth-child(3)) {
+  inline-size: var(--wrapper);
+  margin-inline: auto;
+}
+section:where(.preference, :nth-child(3)) > * {
+  inline-size: var(--wrapper);
+}
+section .tag {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: hsl(var(--text--200));
+}
+section:nth-child(3n) {
+  background-color: hsl(var(--surface--200));
+}
+section img {
+  aspect-ratio: 16/9;
+  max-inline-size: 60ch;
+  mix-blend-mode: luminosity;
+  border-radius: 0.5rem;
+}
+
+h1 {
+  font-size: 2.25rem;
+  color: hsl(var(--text--100));
+}
+
+p {
+  color: hsl(var(--text-100));
+}
+p.small {
+  color: hsl(var(--text-200));
+  font-size: 0.95rem;
+}
+
+.homepage {
+  block-size: calc(100vh - 58px);
+}
+
+.color {
+  position: relative;
+  padding: 4rem 0;
+}
+.color .small {
+  position: absolute;
+  bottom: 1rem;
+}
+
+.preference {
+  background-color: hsl(var(--surface--400));
+}
+
+.complimentary {
+  --hue-add: 180;
+}
+
+.palette {
+  --size: 60px;
+  display: flex;
+  justify-content: center;
+  translate: 1.75rem 0;
+  margin-block-start: 1rem;
+}
+.palette .box {
+  block-size: var(--size);
+  inline-size: var(--size);
+  border-radius: calc(var(--size) / 2);
+  border: 2px solid #fff;
+}
+.palette .box:nth-child(1) {
+  background-color: hsl(var(--surface--200));
+  transform: translateX(0px);
+}
+.palette .box:nth-child(2) {
+  background-color: hsl(var(--surface--100));
+  transform: translateX(-12px);
+}
+.palette .box:nth-child(3) {
+  background-color: hsl(var(--surface-100));
+  transform: translateX(-24px);
+}
+.palette .box:nth-child(4) {
+  background-color: hsl(var(--surface-200));
+  transform: translateX(-36px);
+}
+.palette .box:nth-child(5) {
+  background-color: hsl(var(--surface-300));
+  transform: translateX(-48px);
+}
+
+.text-100 {
+  color: hsl(var(--text--200));
+}
+
+.text-200 {
+  color: hsl(var(--text--100));
+}
+
+.text-300 {
+  color: hsl(var(--text-100));
+}
+
+.text-400 {
+  color: hsl(var(--text-200));
+}
+
+.text-500 {
+  color: hsl(var(--text-300));
+}

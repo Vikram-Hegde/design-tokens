@@ -10,10 +10,18 @@ function getThemePreference() {
 	let theme: boolean | string = window.matchMedia(
 		'(prefers-color-scheme: dark)'
 	).matches;
-	theme = theme ? 'light' : 'dark';
+	let invert = theme ? 'light' : 'dark';
+	let currentTheme = theme ? 'dark' : 'light';
 	document
 		.querySelectorAll('[generated-colors~="invert"]')
-		.forEach((gen) => gen?.setAttribute('generated-colors', `invert ${theme}`));
+		.forEach((gen) =>
+			gen?.setAttribute('generated-colors', `invert ${invert}`)
+		);
+	document
+		.querySelectorAll('[generated-colors~="adapt"]')
+		.forEach((gen) =>
+			gen?.setAttribute('generated-colors', `adapt ${currentTheme}`)
+		);
 }
 getThemePreference();
 
