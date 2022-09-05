@@ -15,6 +15,12 @@
 	}
 }
 
+@mixin prefer-dark() {
+	@media (prefers-color-scheme: dark) {
+		@content;
+	}
+}
+
 @mixin flex($x: start, $y: start, $dir: row) {
 	display: flex;
 	justify-content: $x;
