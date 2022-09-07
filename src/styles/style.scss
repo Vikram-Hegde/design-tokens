@@ -73,6 +73,10 @@ section {
 		text-transform: uppercase;
 		letter-spacing: 2px;
 		color: hsl(var(--text--200));
+		background-color: hsl(var(--surface--200));
+		width: fit-content;
+		padding: 0.2rem 0.5rem;
+		border-radius: 50px;
 	}
 
 	&:nth-child(2) {
