@@ -82,21 +82,27 @@ section {
 	&:nth-child(2) {
 		background-color: hsl(var(--surface--200));
 	}
-
-	img {
-		aspect-ratio: 16 / 9;
-		max-inline-size: 60ch;
-		mix-blend-mode: luminosity;
-		border-radius: 0.5rem;
-	}
 }
 
 .label-range {
 	display: none;
 }
 
-.homepage h1 {
-	margin-block-start: 58px;
+.homepage {
+	.icon {
+		height: 4.75rem;
+		width: 4.75rem;
+		@extend %centered;
+		box-sizing: content-box;
+	}
+
+	img {
+		width: 3rem;
+		height: auto;
+		transform-origin: bottom left;
+		rotate: -45deg;
+		translate: 1.5rem 0.3rem;
+	}
 }
 
 h1 {
@@ -117,6 +123,13 @@ p {
 	position: relative;
 	gap: 1.25rem;
 	padding: 4rem 0;
+
+	img {
+		aspect-ratio: 16 / 9;
+		max-inline-size: 60ch;
+		mix-blend-mode: luminosity;
+		border-radius: 0.5rem;
+	}
 
 	.small {
 		position: absolute;
