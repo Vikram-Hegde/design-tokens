@@ -69,6 +69,7 @@ $level-size: $type-base-size;
 			// or lower levels appaering larger than higher levels
 			// 4vw was selected by testing from $type-ratios map, YMMV 🙃
 			$fluid-scaler: ($level-unitless - $fluid-min) + 4vw;
+			@debug $fluid-min, $fluid-scaler, $level-size;
 
 			font-size: clamp(
 				#{$fluid-min}rem,
@@ -82,5 +83,3 @@ $level-size: $type-base-size;
 @function type-style($key) {
 	@return map.get($type-styles, $key);
 }
-
-@debug $type-styles;
