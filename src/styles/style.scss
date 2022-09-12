@@ -179,17 +179,17 @@ $idx: 0;
 			background-color: hsl(var(--surface-#{$i * 100}));
 			transform: translateX(calc(12px * ($idx - 1) * -1));
 		}
+		.text-#{$idx * 100} {
+			color: hsl(var(--text-#{$i * 100}));
+		}
 	}
 }
 
-// text shades
-$idx1: 0;
-@for $i from -2 through 2 {
-	@if $i >= 0 {
-		$i: $i + 1;
-	}
-	$idx1: $idx1 + 1 !global;
-	.text-#{$idx1 * 100} {
-		color: hsl(var(--text-#{$i * 100}));
-	}
-}
+// // text shades
+// $idx1: 0;
+// @for $i from -2 through 2 {
+// 	@if $i >= 0 {
+// 		$i: $i + 1;
+// 	}
+// 	$idx1: $idx1 + 1 !global;
+// }
