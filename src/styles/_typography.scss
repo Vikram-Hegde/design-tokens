@@ -1,6 +1,9 @@
 @use 'sass:map';
 @use 'sass:math';
 
+$font-sizes: ();
+
+// typescale values from type-scale.com
 $type-ratios: (
 	'minorSecond': 1.067,
 	'majorSecond': 1.125,
@@ -16,70 +19,31 @@ $type-ratios: (
 	@return map.get($type-ratios, $key);
 }
 
-// Recommended
-$type-base-size: 1rem;
+$base-size: 1rem;
+$type-ratio: type-ratio('majorThird');
 
-// Select by key of map, or use a custom value
-$type-size-ratio: type-ratio('perfectFourth');
+$level-size: $base-size;
 
-// List in descending order to prevent extra sort function
-// Limited to high-touch heading styles
-$type-levels: 4, 3, 2, 1;
+// Headings
+@for $i from 1 through 6 {
+	$level-size: $level-size * $type-ratio;
+	// $font-sizes: map.set($font-sizes, h#{$i}, $level-size);
 
-// Create map with h[x] as key
-// and computed font-size as value
-$type-styles: ();
-$level-size: $type-base-size;
-@each $level in $type-levels {
-	$level-size: $level-size * $type-size-ratio;
-	$type-styles: map.merge($type-styles, (h#{$level}: $level-size));
+	$fluid-reduction: if($level-size > 4, 0.5, 0.33);
 
-	// Output heading styles
-	// Assign to element and create utility class
-	h#{$level},
-	.h#{$level} {
-		// Fallback for browsers that don't support min / max
-		font-size: $level-size;
-
-		// Recommendation courtesy of this brilliant work:
-		// @link https://kittygiraudel.com/2020/05/18/using-calc-to-figure-out-optimal-line-height/
-		line-height: calc(2px + 2ex + 2px);
-
-		// Set with `em` to be relative to current `font-size`
-		margin-bottom: 0.65em;
-
-		// Limit in place based on testing -> smaller ratios are
-		// prematurely or unnecessarily reduced
-		@if ($type-size-ratio > 1.2) {
-			// Fluid type styles
-
-			// Remove unit for calculations
-			$level-unitless: math.div($level-size, ($level-size * 0 + 1));
-
-			// Set minimum size to a percentage less than $level-size
-			// Reduction is greater for large font sizes (> 4rem) to help
-			// prevent overflow due to font-size on mobile devices
-			$fluid-reduction: if($level-size > 4, 0.5, 0.33);
-			$fluid-min: $level-unitless - ($fluid-reduction * $level-unitless);
-
-			// Prevent dropping lower than 1rem (body font-size)
-			$fluid-min: if($fluid-min > $type-base-size, $fluid-min, 1);
-
-			// Adjust max modifier slightly per level to prevent "same" size
-			// or lower levels appaering larger than higher levels
-			// 4vw was selected by testing from $type-ratios map, YMMV 🙃
-			$fluid-scaler: ($level-unitless - $fluid-min) + 4vw;
-			@debug $fluid-min, $fluid-scaler, $level-size;
-
-			font-size: clamp(
-				#{$fluid-min}rem,
-				#{$fluid-scaler} + 1rem,
-				#{$level-size}
-			);
-		}
-	}
+	$fluid-min: math.max(1rem, $level-size - ($fluid-reduction * $level-size));
+	$fluid-scaler: calc(($level-size - $fluid-min) + 4vw);
+	$font-sizes: map.set(
+		$font-sizes,
+		#{$i * 100},
+		clamp(#{$fluid-min}, #{$fluid-scaler}, #{$level-size})
+	);
 }
 
-@function type-style($key) {
-	@return map.get($type-styles, $key);
+@debug $font-sizes;
+
+:root {
+	@each $prop, $value in $font-sizes {
+		--fs-#{$prop}: #{$value};
+	}
 }

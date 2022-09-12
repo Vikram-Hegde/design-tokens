@@ -21,6 +21,12 @@
 	}
 }
 
+@mixin touch-device {
+	@media (hover: none), (pointer: coarse) {
+		@content;
+	}
+}
+
 @mixin flex($x: start, $y: start, $dir: row) {
 	display: flex;
 	justify-content: $x;
@@ -28,6 +34,12 @@
 	@if ($dir != row) {
 		flex-direction: $dir;
 	}
+}
+
+@mixin rounded($size) {
+	inline-size: $size;
+	block-size: $size;
+	border-radius: math.div($size / 2);
 }
 
 %range {
@@ -76,10 +88,4 @@
 
 %centered {
 	@include flex(center, center);
-}
-
-@mixin touch-device {
-	@media (hover: none), (pointer: coarse) {
-		@content;
-	}
 }

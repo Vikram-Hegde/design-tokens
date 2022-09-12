@@ -75,8 +75,9 @@ section {
 		color: hsl(var(--text--200));
 		background-color: hsl(var(--surface--200));
 		width: fit-content;
-		padding: 0.2rem 0.5rem;
+		padding: 0.3rem 0.5rem;
 		border-radius: 50px;
+		line-height: 1;
 	}
 
 	&:nth-child(2) {
