@@ -158,15 +158,12 @@ $idx: 0;
 
 .palette {
 	--size: 60px;
-	display: flex;
-	justify-content: center;
+	@include flex(center);
 	translate: 1.75rem 0;
 	margin-block-start: 1rem;
 	// gap: 12px;
 	.box {
-		block-size: var(--size);
-		inline-size: var(--size);
-		border-radius: calc(var(--size) / 2);
+		@include rounded(var(--size));
 		border: 2px solid #fff;
 	}
 
@@ -184,12 +181,3 @@ $idx: 0;
 		}
 	}
 }
-
-// // text shades
-// $idx1: 0;
-// @for $i from -2 through 2 {
-// 	@if $i >= 0 {
-// 		$i: $i + 1;
-// 	}
-// 	$idx1: $idx1 + 1 !global;
-// }

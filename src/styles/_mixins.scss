@@ -37,9 +37,9 @@
 }
 
 @mixin rounded($size) {
-	inline-size: $size;
-	block-size: $size;
-	border-radius: math.div($size / 2);
+	inline-size: #{$size};
+	block-size: #{$size};
+	border-radius: calc($size / 2);
 }
 
 %range {
