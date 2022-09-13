@@ -5,7 +5,7 @@ $colors: ();
 // if only using custom colors don't forget to define your root with variables.
 
 /// config for auto generation.
-$base: hsl(220 50% 50%);
+$base-color: hsl(220 50% 50%);
 $config: (
 	auto-generate: true,
 	stepShades: 20%,
@@ -16,6 +16,6 @@ $config: (
 );
 
 /// config for types
-$font-sizes: (
-	100: 100px,
-);
+$base-size: 0.85rem;
+///custom font size for specific/new weights
+$font-sizes: ();

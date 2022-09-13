@@ -42,6 +42,12 @@
 	border-radius: calc($size / 2);
 }
 
+@mixin map($prefix, $variable) {
+	@each $prop, $value in $variable {
+		#{$prefix}-#{$prop}: #{$value};
+	}
+}
+
 %range {
 	background-color: transparent;
 	appearance: none;

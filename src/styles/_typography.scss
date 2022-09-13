@@ -1,6 +1,7 @@
 @use 'sass:map';
 @use 'sass:math';
 @use 'sass:meta';
+@use './mixins' as *;
 @use './config' as config;
 
 $font-sizes: ();
@@ -21,7 +22,11 @@ $type-ratios: (
 	@return map.get($type-ratios, $key);
 }
 
-$base-size: 1rem;
+$base-size: if(
+	meta.global-variable-exists('base-size', config),
+	config.$base-size,
+	1rem
+);
 $type-ratio: type-ratio('majorThird');
 
 $level-size: $base-size;
@@ -33,7 +38,10 @@ $level-size: $base-size;
 
 	$fluid-reduction: if($level-size > 4, 0.5, 0.33);
 
-	$fluid-min: math.max(1rem, $level-size - ($fluid-reduction * $level-size));
+	$fluid-min: math.max(
+		$base-size,
+		$level-size - ($fluid-reduction * $level-size)
+	);
 	$fluid-scaler: calc(($level-size - $fluid-min) + 4vw);
 	$font-sizes: map.set(
 		$font-sizes,
@@ -46,10 +54,6 @@ $level-size: $base-size;
 	$font-sizes: map.merge($font-sizes, config.$font-sizes);
 }
 
-@debug $font-sizes;
-
 :root {
-	@each $prop, $value in $font-sizes {
-		--fs-#{$prop}: #{$value};
-	}
+	@include map('--fs', $font-sizes);
 }
