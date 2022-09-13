@@ -157,7 +157,7 @@ p {
 	}
 
 	> * {
-		max-width: 60ch;
+		inline-size: var(--wrapper);
 		margin-inline: auto;
 	}
 }
