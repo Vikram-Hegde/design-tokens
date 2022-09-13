@@ -152,6 +152,10 @@ p {
 	color: hsl(var(--text--100));
 	background-color: hsl(var(--surface--200));
 
+	h3 {
+		font-size: var(--fs-300);
+	}
+
 	a {
 		color: hsl(var(--h) 50% 60%);
 	}
