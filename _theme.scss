@@ -2,7 +2,7 @@
 @use 'sass:color';
 @use 'sass:math';
 @use './functions' as func;
-@use './config' as config;
+@use '../config' as config;
 
 $colors: ();
 
