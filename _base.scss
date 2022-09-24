@@ -1,10 +1,10 @@
 // base styles to make things consistent and usable across browsers.
 @forward './typography';
 
-html {
-	overflow-x: hidden;
+* {
+	line-height: calc(2px + 2ex + 2px);
 }
 
-body {
-	line-height: calc(2px + 2ex + 2px);
+html {
+	overflow-x: hidden;
 }
