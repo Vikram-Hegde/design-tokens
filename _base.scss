@@ -1,5 +1,5 @@
 // base styles to make things consistent and usable across browsers.
-@forward './typography';
+@use './typography';
 
 * {
 	line-height: calc(2px + 2ex + 2px);
@@ -7,4 +7,25 @@
 
 html {
 	overflow-x: hidden;
+}
+
+/* Remove border and set sensible defaults for backgrounds, on all elements except fieldset progress and meter */
+*:where(:not(fieldset, progress, meter)) {
+  border-width: 0;
+  border-style: solid;
+  background-origin: border-box;
+  background-repeat: no-repeat;
+}
+
+/* Animate focus outline */
+@include prefers-motion {
+  :focus-visible {
+    transition: outline-offset 145ms cubic-bezier(0.25, 0, 0.4, 1);
+  }
+  :where(:not(:active)):focus-visible {
+    transition-duration: 0.25s;
+  }
+}
+:where(:not(:active)):focus-visible {
+  outline-offset: 5px;
 }
