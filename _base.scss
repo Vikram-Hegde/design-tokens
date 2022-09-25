@@ -1,5 +1,6 @@
 // base styles to make things consistent and usable across browsers.
 @use './typography';
+@use './mixins' as *;
 
 * {
 	line-height: calc(2px + 2ex + 2px);
@@ -26,6 +27,7 @@ html {
     transition-duration: 0.25s;
   }
 }
+
 :where(:not(:active)):focus-visible {
   outline-offset: 5px;
 }
