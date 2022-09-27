@@ -18,7 +18,7 @@ html {
   background-repeat: no-repeat;
 }
 
-/* Animate focus outline */
+/* Animate focus outline, if no preference for motion */
 @include prefers-motion {
   :focus-visible {
     transition: outline-offset 145ms cubic-bezier(0.25, 0, 0.4, 1);

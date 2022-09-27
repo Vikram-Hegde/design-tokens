@@ -37,11 +37,8 @@ $steps: if($config-steps != null, $config-steps, 6);
 
 $level-size: $base-size;
 
-// Headings
 @for $i from 1 through $steps {
 	$level-size: $level-size * $type-ratio;
-	// $font-sizes: map.set($font-sizes, h#{$i}, $level-size);
-
 	$fluid-reduction: if($level-size > 4, 0.5, 0.33);
 
 	$fluid-min: math.max(

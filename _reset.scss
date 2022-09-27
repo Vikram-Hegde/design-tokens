@@ -1,5 +1,5 @@
 /**
-	* TODO: Bring in popular resets	
+	* DONE: Bring in popular resets	
 */
 @use './mixins' as *;
 @forward './theme';
@@ -43,10 +43,8 @@ body {
 
 /* SVG's without a fill attribute */
 :where(svg):where(:not([fill])) {
-  /* Remove fill and set stroke colour to the inherited font colour */
   stroke: currentColor;
   fill: none;
-  /* Rounded stroke */
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -61,7 +59,6 @@ body {
 :where(input[type="file"])::-webkit-file-upload-button {
   color: inherit;
   font: inherit;
-  font-size: inherit;
   letter-spacing: inherit;
   word-spacing: inherit;
 }
@@ -80,11 +77,6 @@ body {
 /* Avoid text overflows */
 :where(p, h1, h2, h3, h4, h5, h6) {
   overflow-wrap: break-word;
-}
-
-/* Fix h1 font size inside article, aside, nav, and section */
-h1 {
-  font-size: 2em;
 }
 
 /* Position list marker inside */
@@ -123,7 +115,6 @@ a:not([class]) {
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   user-select: none;
-  text-align: center;
 }
 
 /* Disabled cursor for disabled buttons */
