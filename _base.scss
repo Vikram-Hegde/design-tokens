@@ -9,6 +9,10 @@ html {
 	overflow-x: hidden;
 }
 
+body {
+  font-size: var(--fs-200)
+}
+
 /* Remove border and set sensible defaults for backgrounds, on all elements except fieldset progress and meter */
 *:where(:not(fieldset, progress, meter)) {
 	border-width: 0;
@@ -17,16 +21,21 @@ html {
 	background-repeat: no-repeat;
 }
 
+// Typography
 $steps: 5;
 @for $i from 1 through $steps {
-	h#{$i} {
+	:where(h#{$i}) {
 		font-size: var(--fs-#{(($steps + 1) - $i) * 100})
 	}
 }
 
-:where(p) {
-  font-size: var(--fs-200)
+@supports(selector(:has(p))) {
+	// list indent
+	:not(:where(ul, ol):has(ul, ol)) {
+		padding: revert;
+	}
 }
+
 
 /* Animate focus outline, if no preference for motion */
 @include prefers-motion {
