@@ -29,8 +29,8 @@ $steps: 5;
 	}
 }
 
+// nested list indent if support for has
 @supports(selector(:has(p))) {
-	// list indent
 	:not(:where(ul, ol):has(ul, ol)) {
 		padding: revert;
 	}
