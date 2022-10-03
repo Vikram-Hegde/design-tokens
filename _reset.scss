@@ -20,13 +20,13 @@ html {
 }
 
 body {
-  /* Improve text rendering */
+  // Improve text rendering
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeSpeed;
   min-block-size: 100%;
 }
 
-/* Improve media defaults */
+// Improve media defaults
 :where(img, svg, video, canvas, audio, iframe, embed, object) {
   display: block;
 }
@@ -36,7 +36,7 @@ body {
   max-inline-size: 100%;
 }
 
-/* SVG's without a fill attribute */
+// SVG's without a fill attribute
 :where(svg):where(:not([fill])) {
   stroke: currentColor;
   fill: none;
@@ -44,12 +44,12 @@ body {
   stroke-linejoin: round;
 }
 
-/* Set a size for SVG's without a width attribute */
+// Set a size for SVG's without a width attribute
 :where(svg):where(:not([width])) {
   inline-size: 2rem;
 }
 
-/* Remove built-in form typography styles */
+// Remove built-in form typography styles
 :where(input, button, textarea, select),
 :where(input[type="file"])::-webkit-file-upload-button {
   color: inherit;
@@ -59,7 +59,7 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Change textarea resize to vertical only and block only if the browser supports that */
+// Change textarea resize to vertical only and block only if the browser supports that
 :where(textarea) {
   resize: vertical;
 }
@@ -70,27 +70,27 @@ body {
   }
 }
 
-/* Avoid text overflows */
+// Avoid text overflows
 :where(p, h1, h2, h3, h4, h5, h6) {
   overflow-wrap: break-word;
 }
 
-/* Position list marker inside */
+// Position list marker inside
 :where(ul, ol) {
   list-style-position: inside;
 }
 
-/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+// Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed
 :where(ul, ol)[role="list"] {
   list-style: none;
 }
 
-/* More readable underline style for anchor tags without a class. This could be set on anchor tags globally, but it can cause conflicts. */
+// More readable underline style for anchor tags without a class. This could be set on anchor tags globally, but it can cause conflicts.
 a:not([class]) {
   text-decoration-skip-ink: auto;
 }
 
-/* Make it clear that interactive elements are interactive */
+// Make it clear that interactive elements are interactive
 :where(a[href], area, button, input, label[for], select, summary, textarea, [tabindex]:not([tabindex*="-"])) {
   cursor: pointer;
   touch-action: manipulation;
@@ -104,7 +104,7 @@ a:not([class]) {
 }
 
 
-/* Make sure users can't select button text */
+// Make sure users can't select button text
 :where(button, button[type], input[type="button"], input[type="submit"], input[type="reset"]),
 :where(input[type="file"])::-webkit-file-upload-button,
 :where(input[type="file"])::file-selector-button {
@@ -113,7 +113,7 @@ a:not([class]) {
   user-select: none;
 }
 
-/* Disabled cursor for disabled buttons */
+// Disabled cursor for disabled buttons
 :where(button, button[type], input[type="button"], input[type="submit"], input[type="reset"])[disabled] {
   cursor: not-allowed;
 }
