@@ -49,7 +49,7 @@
 	display: block;
 
 	&:focus {
-		outline: none;
+		outline-offset: 5px;
 	}
 
 	&::-webkit-slider-runnable-track {

@@ -14,12 +14,33 @@ body {
   font-size: var(--fs-200)
 }
 
-*:where(a) {
-	color: hsl(var(--h) 50% 50%)
-}
 
-*:where(a:visited) {
-	color: hsl(var(--h) 50% 80%)
+// Link styles
+/**
+	* TODO: 
+				- Link
+				- Visited
+				- Hover
+				- Active
+				- Focus
+*/
+:where(a) {
+	--_hue: var(--h);
+	--_sat: 50%;
+	--_light: 70%;
+	text-decoration: none;
+	color: hsl(var(--_hue) var(--_sat) var(--_light));
+}
+:where(a:visited) {
+	color: hsl(calc(var(--_hue) + 60deg) var(--_sat) var(--_light))
+}
+:where(a:hover) {
+	--_light: 50%;
+	text-decoration: revert;
+}
+:where(a:focus-visible) {
+	outline: 2px solid currentColor;
+	outline-offset: 2px;
 }
 
 /* Remove border and set sensible defaults for backgrounds, on all elements except fieldset progress and meter */
