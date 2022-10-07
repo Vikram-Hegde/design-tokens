@@ -10,14 +10,12 @@ html {
 }
 
 body {
-	--_sat: 80%;
   font-size: var(--fs-200);
 	color: hsl(var(--text-100));
 }
 
 @include prefer-dark() {
 	body {
-		--_sat: 50%;
 		background-color: hsl(var(--surface-100));
 	}
 }
@@ -34,9 +32,13 @@ body {
 */
 :where(a) {
 	--_hue: var(--h);
+	--_sat: 95%;
 	--_light: 50%;
 	text-decoration: none;
 	color: hsl(var(--_hue) var(--_sat) var(--_light));
+	@include prefer-dark() {
+		--_sat: 60%;
+	}
 }
 :where(a:visited) {
 	color: hsl(calc(var(--_hue) + 60deg) var(--_sat) var(--_light))
