@@ -7,11 +7,19 @@
 
 html {
 	overflow-x: hidden;
-	color-scheme: dark light; // a temporary change
 }
 
 body {
-  font-size: var(--fs-200)
+	--_sat: 80%;
+  font-size: var(--fs-200);
+	color: hsl(var(--text-100));
+}
+
+@include prefer-dark() {
+	body {
+		--_sat: 50%;
+		background-color: hsl(var(--surface-100));
+	}
 }
 
 
@@ -26,8 +34,7 @@ body {
 */
 :where(a) {
 	--_hue: var(--h);
-	--_sat: 50%;
-	--_light: 70%;
+	--_light: 50%;
 	text-decoration: none;
 	color: hsl(var(--_hue) var(--_sat) var(--_light));
 }
@@ -35,12 +42,12 @@ body {
 	color: hsl(calc(var(--_hue) + 60deg) var(--_sat) var(--_light))
 }
 :where(a:hover) {
-	--_light: 50%;
+	--_light: 40%;
 	text-decoration: revert;
 }
 :where(a:focus-visible) {
 	outline: 2px solid currentColor;
-	outline-offset: 2px;
+	border-radius: 2px;
 }
 
 /* Remove border and set sensible defaults for backgrounds, on all elements except fieldset progress and meter */
@@ -78,5 +85,5 @@ $steps: 5;
 }
 
 :where(:not(:active)):focus-visible {
-	outline-offset: 5px;
+	outline-offset: 3px;
 }
