@@ -24,7 +24,7 @@ $colors: ();
 			$theme,
 			$name,
 			#{$idx * 100},
-			#{calc(var(--h) + var(--hue-add, 0)) #{$saturation} #{$lightness}}
+			#{calc(var(--h) + var(--hue-add, 0deg)) #{$saturation} #{$lightness}}
 		) !global;
 	}
 }
