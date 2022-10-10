@@ -1,10 +1,11 @@
 /*
 	Done List
 		- Link Styles
-	* TODO List
-		- Form Elements
 		- Mark Element
+	TODO List
+		- Form Elements
 		- Inserted Element
+		- Details / Summary
 */
 @use './mixins' as *;
 
@@ -13,13 +14,15 @@ html {
 }
 
 body {
-  font-size: var(--fs-200);
+	font-size: var(--fs-200);
 	background-color: hsl(var(--surface--400));
 	color: hsl(var(--text--100));
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+		Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
-	@include prefer-dark() {
-	}
+	// temp changes
+	inline-size: min(100% - 2rem, 70ch);
+	margin-inline: auto;
 }
 
 /**
@@ -32,17 +35,18 @@ body {
 */
 :where(a) {
 	--_hue: var(--h);
-	--_sat: 85%;
+	--_sat: 80%;
 	--_light: 50%;
 	text-decoration: none;
 	color: hsl(var(--_hue) var(--_sat) var(--_light));
 
 	@include prefer-dark() {
-		--_sat: 60%;
+		--_sat: 40%;
+		--_light: 60%;
 	}
 }
 :where(a:visited) {
-	color: hsl(calc(var(--_hue) + 60deg) var(--_sat) var(--_light))
+	color: hsl(calc(var(--_hue) + 60deg) var(--_sat) var(--_light));
 }
 :where(a:hover) {
 	--_light: 40%;
@@ -60,25 +64,54 @@ body {
 	background-origin: border-box;
 	background-repeat: no-repeat;
 }
-:where(input) {
-	background-color: hsl(var(--surface-100));
+:where(input, textarea) {
+	accent-color: hsl(var(--surface-100));
+	background-color: hsl(var(--h) max(10%, var(--s)) var(--_light, 90%));
+
+	@include prefer-dark() {
+		--_light: 10%;
+		color-scheme: dark;
+	}
+
+	&::placeholder {
+		color: hsl(var(--text-200) / 0.5);
+	}
+}
+
+:where(mark, del, ins) {
+	display: inline-block;
+	border-radius: 4px;
+	padding: 0.25rem;
+	line-height: 1;
+}
+
+:where(del) {
+	background-color: red;
+}
+
+:where(ins) {
+	background-color: green;
+	color: hsl(var(--surface--400));
+}
+
+:where(summary) {
+	
 }
 
 // Typography
-$steps: 5;
+$steps: 5; /// base styles for 5 headings
 @for $i from 1 through $steps {
 	:where(h#{$i}) {
-		font-size: var(--fs-#{(($steps + 1) - $i) * 100})
+		font-size: var(--fs-#{(($steps + 1) - $i) * 100});
 	}
 }
 
 // nested list indent if support for has
-@supports(selector(:has(p))) {
-	:not(:where(ul, ol):has(ul, ol)) {
+@supports (selector(:has(p))) {
+	:where(ul, ol):not(:has(ul, ol)) {
 		padding: revert;
 	}
 }
-
 
 /* Animate focus outline, if no preference for motion */
 @include prefers-motion {
