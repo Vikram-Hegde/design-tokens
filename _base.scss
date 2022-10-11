@@ -94,9 +94,34 @@ body {
 	color: hsl(var(--surface--400));
 }
 
-:where(summary) {
-	
+:where(details) {
+	--radius: 0.3rem;
+	--spacing: 0.5rem;
 }
+
+:where(details > summary) {
+	background-color: hsl(var(--h) var(--s) 90%);
+	border-radius: var(--radius);
+	padding: var(--spacing);
+	line-height: 1;
+	@include prefer-dark() {
+		background-color: hsl(var(--h) var(--s) 10%);
+	}
+}
+
+:where(details[open] > summary) {
+	border-radius: var(--radius) var(--radius) 0 0;
+}
+
+:where(details > p) {
+	background-color: hsl(var(--h) var(--s) 87%);
+	border-radius: 0 0 var(--radius) var(--radius);
+	padding: 8px var(--spacing);
+	@include prefer-dark() {
+		background-color: hsl(var(--h) var(--s) 13%);
+	}
+}
+
 
 // Typography
 $steps: 5; /// base styles for 5 headings
