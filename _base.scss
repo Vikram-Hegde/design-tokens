@@ -1,11 +1,14 @@
 /*
-	Done List
+* DONE
 		- Link Styles
 		- Mark Element
-	TODO List
-		- Form Elements
-		- Inserted Element
 		- Details / Summary
+		- Inserted Element
+	TODO
+		- Form Elements
+! Issues
+	  - Had to modify colors myself a lot
+		trouble with color schemes being either too dark or too low.
 */
 @use './mixins' as *;
 @forward './theme';
@@ -37,13 +40,13 @@ body {
 */
 :where(a) {
 	--_hue: var(--h);
-	--_sat: 80%;
+	--_sat: 60%;
 	--_light: 50%;
 	text-decoration: none;
 	color: hsl(var(--_hue) var(--_sat) var(--_light));
 
 	@include prefer-dark() {
-		--_sat: 40%;
+		--_sat: 50%;
 		--_light: 60%;
 	}
 }
@@ -66,9 +69,11 @@ body {
 	background-origin: border-box;
 	background-repeat: no-repeat;
 }
-:where(input, textarea) {
+:where(input, textarea, select) {
 	accent-color: hsl(var(--surface-100));
-	background-color: hsl(var(--h) max(10%, var(--s)) var(--_light, 90%));
+	background-color: hsl(var(--h) 20% var(--_light, 90%));
+	padding: 0.25rem;
+	border-radius: 0.25rem;
 
 	@include prefer-dark() {
 		--_light: 10%;
@@ -77,6 +82,11 @@ body {
 
 	&::placeholder {
 		color: hsl(var(--text-200) / 0.5);
+	}
+}
+:where(button) {
+	@include prefer-dark() {
+		color-scheme: dark;
 	}
 }
 
@@ -93,7 +103,21 @@ body {
 
 :where(ins) {
 	background-color: green;
-	color: hsl(var(--surface--400));
+}
+
+:where(kbd) {
+	outline: 2px solid currentColor;
+	border-radius: 0.15rem;
+	outline-offset: 4px;
+}
+
+:where(code) {
+	background-color: hsl(var(--h) var(--s) var(--_light, 90%));
+	padding: 0.25rem;
+	border-radius: 0.3rem;
+	@include prefer-dark() {
+		--_light: 10%;
+	}
 }
 
 :where(details) {
@@ -102,12 +126,12 @@ body {
 }
 
 :where(details > summary) {
-	background-color: hsl(var(--h) var(--s) 90%);
+	background-color: hsl(var(--h) var(--s) var(--_light, 90%));
 	border-radius: var(--radius);
 	padding: var(--spacing);
 	line-height: 1;
 	@include prefer-dark() {
-		background-color: hsl(var(--h) var(--s) 10%);
+		--_light: 20%;
 	}
 }
 
@@ -116,11 +140,11 @@ body {
 }
 
 :where(details > p) {
-	background-color: hsl(var(--h) var(--s) 87%);
+	background-color: hsl(var(--h) var(--s) var(--_light, 87%));
 	border-radius: 0 0 var(--radius) var(--radius);
 	padding: 8px var(--spacing);
 	@include prefer-dark() {
-		background-color: hsl(var(--h) var(--s) 13%);
+		--_light: 13%
 	}
 }
 
