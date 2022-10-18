@@ -62,6 +62,14 @@ body {
 	border-radius: 2px;
 }
 
+@mixin custom-dark {
+	background-color: hsl(var(--h) 20% var(--_light, 90%));
+	@include prefer-dark() {
+		--_light: 10%;
+		color-scheme: dark;
+	}
+}
+
 /* Remove border and set sensible defaults for backgrounds, on all elements except fieldset progress and meter */
 :where(:not(fieldset, progress, meter)) {
 	border-width: 0;
@@ -71,23 +79,17 @@ body {
 }
 :where(input, textarea, select) {
 	accent-color: hsl(var(--surface-100));
-	background-color: hsl(var(--h) 20% var(--_light, 90%));
 	padding: 0.25rem;
 	border-radius: 0.25rem;
-
-	@include prefer-dark() {
-		--_light: 10%;
-		color-scheme: dark;
-	}
+	@include custom-dark();
 
 	&::placeholder {
 		color: hsl(var(--text-200) / 0.5);
 	}
 }
+
 :where(button) {
-	@include prefer-dark() {
-		color-scheme: dark;
-	}
+	@include custom-dark();
 }
 
 :where(mark, del, ins) {
