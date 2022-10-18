@@ -8,6 +8,8 @@
 		- Details / Summary
 */
 @use './mixins' as *;
+@forward './theme';
+@forward './typography';
 
 html {
 	overflow-x: hidden;
@@ -21,8 +23,8 @@ body {
 		Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
 	// temp changes
-	inline-size: min(100% - 2rem, 70ch);
-	margin-inline: auto;
+	// inline-size: min(100% - 2rem, 70ch);
+	// margin-inline: auto;
 }
 
 /**

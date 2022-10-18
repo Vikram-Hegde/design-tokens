@@ -106,7 +106,7 @@ $cascadingColors: map.get(config.$color-config, cascadingColors);
 }
 
 .complimentary {
-	--hue-add: 180;
+	--hue-add: 180deg;
 }
 
 .monochrome {
