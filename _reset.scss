@@ -103,7 +103,6 @@ a:not([class]) {
   cursor: pointer;
 }
 
-
 // Make sure users can't select button text
 :where(button, button[type], input[type="button"], input[type="submit"], input[type="reset"]),
 :where(input[type="file"])::-webkit-file-upload-button,
