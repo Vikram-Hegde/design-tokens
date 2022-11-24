@@ -31,7 +31,7 @@ body {
   display: block;
 }
 
-:where(img, svg, video) {
+:where(img, video) {
   block-size: auto;
   max-inline-size: 100%;
 }

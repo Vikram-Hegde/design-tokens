@@ -90,3 +90,8 @@
 %centered {
 	@include flex(center, center);
 }
+
+%grid-inherit {
+	display: grid;
+	grid-template-columns: inherit;
+}
