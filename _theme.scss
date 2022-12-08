@@ -71,15 +71,17 @@ $darkMode: map.get(config.$color-config, darkMode);
 		@extend %light;
 	}
 
-	@media (prefers-color-scheme: dark) {
-		%dark {
-			@include generate($stepShades, $numberOfSurfaceShades, surface, dark);
-			@include generate($stepText, $numberOfTextShades, text, dark);
-		}
+	@if $darkMode {
+		@media (prefers-color-scheme: dark) {
+			%dark {
+				@include generate($stepShades, $numberOfSurfaceShades, surface, dark);
+				@include generate($stepText, $numberOfTextShades, text, dark);
+			}
 
-		:root {
-			--s: calc(#{color.saturation($base-color)} - 10%);
-			@extend %dark;
+			:root {
+				--s: calc(#{color.saturation($base-color)} - 10%);
+				@extend %dark;
+			}
 		}
 	}
 }
