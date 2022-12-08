@@ -57,6 +57,7 @@ $stepText: map.get(config.$color-config, stepText);
 $numberOfTextShades: map.get(config.$color-config, numberOfTextShades);
 $numberOfSurfaceShades: map.get(config.$color-config, numberOfSurfaceShades);
 $cascadingColors: map.get(config.$color-config, cascadingColors);
+$darkMode: map.get(config.$color-config, darkMode);
 
 @if $auto {
 	%light {
@@ -83,6 +84,19 @@ $cascadingColors: map.get(config.$color-config, cascadingColors);
 	}
 }
 
+// keep the below lines of code regardless, generate is populating while this is responsible for conversion
+:root {
+	@include color-scheme();
+}
+
+@if $darkMode {
+	@media (prefers-color-scheme: dark) {
+		:root {
+			@include color-scheme(dark);
+		}
+	}
+}
+
 @if $cascadingColors {
 	[generated-colors~='light'] {
 		@extend %light;
@@ -91,16 +105,6 @@ $cascadingColors: map.get(config.$color-config, cascadingColors);
 	[generated-colors~='dark'] {
 		--s: calc(#{color.saturation($base-color)} - 10%);
 		@extend %dark;
-		@include color-scheme(dark);
-	}
-}
-
-:root {
-	@include color-scheme();
-}
-
-@media (prefers-color-scheme: dark) {
-	:root {
 		@include color-scheme(dark);
 	}
 }
